@@ -1,0 +1,1030 @@
+[
+  {
+    "fcode": "039003",
+    "fname": "Nomura Global Shariah Strategic Growth Fund (Class B)"
+  },
+  {
+    "fcode": "039011",
+    "fname": "Nomura Global Shariah Sustainable Equity-MYR"
+  },
+  {
+    "fcode": "039007",
+    "fname": "Nomura Global Sustainable Equity-MYR Class A"
+  },
+  {
+    "fcode": "039008",
+    "fname": "Nomura Global Sustainable Equity-MYR Class B"
+  },
+  {
+    "fcode": "038008",
+    "fname": "Nomura i-Income Fund - Class R"
+  },
+  {
+    "fcode": "038006",
+    "fname": "Nomura i-Income Fund 2 - Class R"
+  },
+  {
+    "fcode": "039014",
+    "fname": "Nomura Japan Shariah Active Core Fund - MYR Class"
+  },
+  {
+    "fcode": "026019",
+    "fname": "Opus Cash Extra Fund 2 *"
+  },
+  {
+    "fcode": "026001",
+    "fname": "OPUS Dynamic Income Fund *"
+  },
+  {
+    "fcode": "026011",
+    "fname": "Opus Income Plus Fund"
+  },
+  {
+    "fcode": "026003",
+    "fname": "OPUS Shariah Cash Extra Fund *"
+  },
+  {
+    "fcode": "026009",
+    "fname": "Opus Shariah Dynamic Income Fund *"
+  },
+  {
+    "fcode": "026005",
+    "fname": "OPUS Shariah Income Fund *"
+  },
+  {
+    "fcode": "026012",
+    "fname": "Opus Shariah Income Plus Fund"
+  },
+  {
+    "fcode": "049001",
+    "fname": "Opus Shariah Liquid Income Fund *"
+  },
+  {
+    "fcode": "026016",
+    "fname": "Opus Shariah Short Term Low Risk Asset Fund"
+  },
+  {
+    "fcode": "026017",
+    "fname": "Opus SRI Sukuk Fund - Class A *"
+  },
+  {
+    "fcode": "026018",
+    "fname": "Opus SRI Sukuk Fund - Class B *"
+  },
+  {
+    "fcode": "047006",
+    "fname": "Performa Digital Asset Fund - MYR *"
+  },
+  {
+    "fcode": "008700",
+    "fname": "Pheim ASEAN Islamic Fund"
+  },
+  {
+    "fcode": "008400",
+    "fname": "Pheim Asia Ex-Japan Fund"
+  },
+  {
+    "fcode": "008500",
+    "fname": "Pheim Asia Ex-Japan Islamic Fund"
+  },
+  {
+    "fcode": "008100",
+    "fname": "Pheim Emerging Companies Balanced Fund"
+  },
+  {
+    "fcode": "008800",
+    "fname": "Pheim Global ESG Islamic Fund"
+  },
+  {
+    "fcode": "008600",
+    "fname": "Pheim Greater China Islamic Fund"
+  },
+  {
+    "fcode": "008300",
+    "fname": "Pheim Income Fund"
+  },
+  {
+    "fcode": "001023",
+    "fname": "Phillip AsiaPac Income Fund"
+  },
+  {
+    "fcode": "001017",
+    "fname": "Phillip Dana Aman"
+  },
+  {
+    "fcode": "001012",
+    "fname": "Phillip Dana Dividen"
+  },
+  {
+    "fcode": "001007",
+    "fname": "Phillip Dana Murni Fund"
+  },
+  {
+    "fcode": "001022",
+    "fname": "Phillip Dividend Fund"
+  },
+  {
+    "fcode": "001013",
+    "fname": "Phillip Focus China Fund"
+  },
+  {
+    "fcode": "001024",
+    "fname": "Phillip Global Disruptive Innovation Fund"
+  },
+  {
+    "fcode": "001015",
+    "fname": "Phillip Global Stars Fund"
+  },
+  {
+    "fcode": "001001",
+    "fname": "Phillip Master Equity Growth Fund"
+  },
+  {
+    "fcode": "001006",
+    "fname": "Phillip Master Islamic Cash Fund"
+  },
+  {
+    "fcode": "001003",
+    "fname": "Phillip Master Money Market Fund"
+  },
+  {
+    "fcode": "001019",
+    "fname": "Phillip Pearl Fund"
+  },
+  {
+    "fcode": "001020",
+    "fname": "Phillip Recovery Fund"
+  },
+  {
+    "fcode": "001008",
+    "fname": "Phillip Select Balance Fund"
+  },
+  {
+    "fcode": "009008",
+    "fname": "PMB Dana Al-Aiman"
+  },
+  {
+    "fcode": "009009",
+    "fname": "PMB Dana Bestari"
+  },
+  {
+    "fcode": "009007",
+    "fname": "PMB Dana Mutiara"
+  },
+  {
+    "fcode": "009005",
+    "fname": "PMB Shariah Aggressive Fund"
+  },
+  {
+    "fcode": "009014",
+    "fname": "PMB Shariah ASEAN Stars Equity Fund-MYR"
+  },
+  {
+    "fcode": "009011",
+    "fname": "PMB Shariah Dividend Fund"
+  },
+  {
+    "fcode": "009018",
+    "fname": "PMB Shariah Equity Fund"
+  },
+  {
+    "fcode": "009003",
+    "fname": "PMB Shariah ESG Global Equity Fund"
+  },
+  {
+    "fcode": "009017",
+    "fname": "PMB Shariah Global Equity Fund"
+  },
+  {
+    "fcode": "009019",
+    "fname": "PMB Shariah Greater China Equity Fund"
+  },
+  {
+    "fcode": "009010",
+    "fname": "PMB Shariah Growth Fund"
+  },
+  {
+    "fcode": "009002",
+    "fname": "PMB Shariah Index Fund"
+  },
+  {
+    "fcode": "009004",
+    "fname": "PMB Shariah Premier Fund"
+  },
+  {
+    "fcode": "009013",
+    "fname": "PMB Shariah Small-Cap Fund"
+  },
+  {
+    "fcode": "009001",
+    "fname": "PMB Sukuk Fund"
+  },
+  {
+    "fcode": "009016",
+    "fname": "PMB-An-Nur Waqf  Income Fund"
+  },
+  {
+    "fcode": "007035",
+    "fname": "Principal ASEAN Dynamic Fund-MYR"
+  },
+  {
+    "fcode": "007294",
+    "fname": "Principal Asia Pacific Dynamic Growth Fund (MYR-Hedged)"
+  },
+  {
+    "fcode": "007098",
+    "fname": "Principal Asia Pacific Dynamic Growth Fund-MYR"
+  },
+  {
+    "fcode": "007034",
+    "fname": "Principal Asia Pacific Dynamic Income Fund (MYR)"
+  },
+  {
+    "fcode": "007292",
+    "fname": "Principal Asia Pacific Dynamic Income Fund (MYR-Hedged)"
+  },
+  {
+    "fcode": "007120",
+    "fname": "Principal Asia Pacific Dynamic Mixed Asset Fund-MYR Class"        
+  },
+  {
+    "fcode": "007142",
+    "fname": "Principal Asia Titans Fund"
+  },
+  {
+    "fcode": "007147",
+    "fname": "Principal Biotechnology Discovery Fund-MYR Hedged"
+  },
+  {
+    "fcode": "007104",
+    "fname": "Principal China Direct Opportunities Fund-MYR"
+  },
+  {
+    "fcode": "007152",
+    "fname": "Principal China Multi Asset Income Fund-MYR *"
+  },
+  {
+    "fcode": "007153",
+    "fname": "Principal China Multi Asset Income Fund-MYR Hedged *"
+  },
+  {
+    "fcode": "007269",
+    "fname": "Principal China New Energy Innovation Fund - Class MYR"
+  },
+  {
+    "fcode": "007270",
+    "fname": "Principal China New Energy Innovation Fund - MYR Hedged"
+  },
+  {
+    "fcode": "007267",
+    "fname": "Principal China Quality Growth Fund - Class MYR-Hedged"
+  },
+  {
+    "fcode": "007027",
+    "fname": "Principal China-India-Indonesia Opportunities Fund"
+  },
+  {
+    "fcode": "007201",
+    "fname": "Principal Commodity Fund-MYR-Hedged *"
+  },
+  {
+    "fcode": "007248",
+    "fname": "Principal DALI Asia Pacific Equity Growth Fund"
+  },
+  {
+    "fcode": "007157",
+    "fname": "Principal DALI Global Equity Fund-MYR"
+  },
+  {
+    "fcode": "007158",
+    "fname": "Principal Dynamic Enhanced Malaysia Income Fund"
+  },
+  {
+    "fcode": "007163",
+    "fname": "Principal Emerging Markets Multi Asset FundΓÇôMYR *"
+  },
+  {
+    "fcode": "007164",
+    "fname": "Principal Emerging Markets Multi Asset FundΓÇôMYR Hedged *"
+  },
+  {
+    "fcode": "007281",
+    "fname": "Principal Global Dynamic Income Fund - Class MYR *"
+  },
+  {
+    "fcode": "007282",
+    "fname": "Principal Global Dynamic Income Fund - Class MYR-Hedged *"
+  },
+  {
+    "fcode": "007143",
+    "fname": "Principal Global Dynamic Innovation Fund - MYR"
+  },
+  {
+    "fcode": "007144",
+    "fname": "Principal Global Dynamic Innovation Fund - MYR Hedged"
+  },
+  {
+    "fcode": "007122",
+    "fname": "Principal Global Income Fund-MYR Hedged Class *"
+  },
+  {
+    "fcode": "007240",
+    "fname": "Principal Global Multi Asset Income - MYR Hedged *"
+  },
+  {
+    "fcode": "007168",
+    "fname": "Principal Global Preferred Securities Fund-MYR *"
+  },
+  {
+    "fcode": "007169",
+    "fname": "Principal Global Preferred Securities Fund-MYR Hedged *"
+  },
+  {
+    "fcode": "007171",
+    "fname": "Principal Global Real Estate FundΓÇôMYR"
+  },
+  {
+    "fcode": "007172",
+    "fname": "Principal Global Real Estate FundΓÇôMYR Hedged"
+  },
+  {
+    "fcode": "007179",
+    "fname": "Principal Global Sustainable Growth - MYR-Hedged *"
+  },
+  {
+    "fcode": "007111",
+    "fname": "Principal Global Technology Fund-MYR Hedged"
+  },
+  {
+    "fcode": "007009",
+    "fname": "Principal Global Titans Fund - MYR"
+  },
+  {
+    "fcode": "007115",
+    "fname": "Principal Greater Bay Fund-MYR Hedged"
+  },
+  {
+    "fcode": "007003",
+    "fname": "Principal Greater China Equity Fund-MYR"
+  },
+  {
+    "fcode": "007130",
+    "fname": "Principal Greater China Equity Fund-MYR Hedged Class"
+  },
+  {
+    "fcode": "007006",
+    "fname": "Principal Islamic Asia Pacific Dynamic Equity Fund"
+  },
+  {
+    "fcode": "007014",
+    "fname": "Principal Islamic Enhanced Opportunities Fund"
+  },
+  {
+    "fcode": "007252",
+    "fname": "Principal Islamic Global Multi-Asset Fund - MYR"
+  },
+  {
+    "fcode": "007253",
+    "fname": "Principal Islamic Global Multi-Asset Fund - MYR Hedged"
+  },
+  {
+    "fcode": "007249",
+    "fname": "Principal Islamic Global Responsible Equity Fund - MYR"
+  },
+  {
+    "fcode": "007250",
+    "fname": "Principal Islamic Global Responsible Equity Fund - MYRH"
+  },
+  {
+    "fcode": "007191",
+    "fname": "Principal Islamic Global Selection Aggressive Fund-MYR"
+  },
+  {
+    "fcode": "007195",
+    "fname": "Principal Islamic Global Selection Moderate Conservative-MYR"     
+  },
+  {
+    "fcode": "007193",
+    "fname": "Principal Islamic Global Selection Moderate Fund-MYR"
+  },
+  {
+    "fcode": "007235",
+    "fname": "Principal Islamic Global Sukuk Fund - MYR"
+  },
+  {
+    "fcode": "007198",
+    "fname": "Principal Islamic Global Technology Fund-MYR"
+  },
+  {
+    "fcode": "007199",
+    "fname": "Principal Islamic Global Technology Fund-MYR-Hedged"
+  },
+  {
+    "fcode": "007255",
+    "fname": "Principal Islamic Greater China Growth Fund - MYR"
+  },
+  {
+    "fcode": "007256",
+    "fname": "Principal Islamic Greater China Growth Fund - MYR Hedged"
+  },
+  {
+    "fcode": "007113",
+    "fname": "Principal Islamic Lifetime Balanced Fund"
+  },
+  {
+    "fcode": "007013",
+    "fname": "Principal Islamic Lifetime Balanced Growth Fund"
+  },
+  {
+    "fcode": "007015",
+    "fname": "Principal Islamic Lifetime Enhanced Sukuk Fund"
+  },
+  {
+    "fcode": "007135",
+    "fname": "Principal Islamic Lifetime Sukuk Fund"
+  },
+  {
+    "fcode": "007032",
+    "fname": "Principal Islamic Malaysia Opportunities Fund"
+  },
+  {
+    "fcode": "007114",
+    "fname": "Principal Islamic Small Cap Opportunities Fund"
+  },
+  {
+    "fcode": "007136",
+    "fname": "Principal Lifetime Balanced Fund"
+  },
+  {
+    "fcode": "007243",
+    "fname": "Principal Lifetime Balanced Income Fund"
+  },
+  {
+    "fcode": "007012",
+    "fname": "Principal Lifetime Bond Fund"
+  },
+  {
+    "fcode": "007001",
+    "fname": "Principal Lifetime Enhanced Bond Fund"
+  },
+  {
+    "fcode": "007245",
+    "fname": "Principal Malaysia Enhanced Opportunities Fund"
+  },
+  {
+    "fcode": "007004",
+    "fname": "Principal Malaysia Opportunities Fund"
+  },
+  {
+    "fcode": "007031",
+    "fname": "Principal Malaysia Titans Fund"
+  },
+  {
+    "fcode": "007262",
+    "fname": "Principal Malaysia Titans Plus Fund - Class MYR"
+  },
+  {
+    "fcode": "007286",
+    "fname": "Principal Nasdaq Equity Premium Income Fund - MYR *"
+  },
+  {
+    "fcode": "007287",
+    "fname": "Principal Nasdaq Equity Premium Income Fund - MYR Hedged *"       
+  },
+  {
+    "fcode": "007177",
+    "fname": "Principal Next-G Connectivity Fund - MYR-Hedged *"
+  },
+  {
+    "fcode": "007276",
+    "fname": "Principal Singapore Equity Fund - Class MYR"
+  },
+  {
+    "fcode": "007277",
+    "fname": "Principal Singapore Equity Fund - Class MYR-Hedged"
+  },
+  {
+    "fcode": "007011",
+    "fname": "Principal Small Cap Opportunities Fund"
+  },
+  {
+    "fcode": "007030",
+    "fname": "Principal Titans Growth & Income Fund"
+  },
+  {
+    "fcode": "007244",
+    "fname": "Principal Titans Income Plus Fund"
+  },
+  {
+    "fcode": "007183",
+    "fname": "Principal US High Conviction Equity - MYR"
+  },
+  {
+    "fcode": "007184",
+    "fname": "Principal US High Conviction Equity - MYR Hedged"
+  },
+  {
+    "fcode": "007261",
+    "fname": "Principal Vietnam Equity Fund - Class MYR-Hedged"
+  },
+  {
+    "fcode": "013134",
+    "fname": "RHB American Income - RM Class B"
+  },
+  {
+    "fcode": "013110",
+    "fname": "RHB American Income Fund ΓÇô RM Hedged Class B *"
+  },
+  {
+    "fcode": "011028",
+    "fname": "RHB Asean Fund"
+  },
+  {
+    "fcode": "013076",
+    "fname": "RHB Asia Dynamic Fund (RM Hedged Class)"
+  },
+  {
+    "fcode": "013075",
+    "fname": "RHB Asia Dynamic Fund (RM)"
+  },
+  {
+    "fcode": "013145",
+    "fname": "RHB Asia Equity High Income Fund ΓÇô RM Class B *"
+  },
+  {
+    "fcode": "013146",
+    "fname": "RHB Asia Equity High Income Fund ΓÇô RM Hedged Class B *"
+  },
+  {
+    "fcode": "013067",
+    "fname": "RHB Asia High Income Bond Fund-RM Hedged Class *"
+  },
+  {
+    "fcode": "013115",
+    "fname": "RHB Asia Pacific Equity Dividend Fund - RM Hedged *"
+  },
+  {
+    "fcode": "013119",
+    "fname": "RHB Asia Sustainable Leaders Fund - RM Hedged"
+  },
+  {
+    "fcode": "013034",
+    "fname": "RHB Asian High Yield Fund-RM *"
+  },
+  {
+    "fcode": "011039",
+    "fname": "RHB Asian Income Fund - Class B"
+  },
+  {
+    "fcode": "011001",
+    "fname": "RHB Big Cap China Enterprise Fund - RM Class"
+  },
+  {
+    "fcode": "013155",
+    "fname": "RHB Big Cap China Enterprise Fund - RM-Hedged Class"
+  },
+  {
+    "fcode": "013033",
+    "fname": "RHB Bond Fund"
+  },
+  {
+    "fcode": "013007",
+    "fname": "RHB Capital Fund"
+  },
+  {
+    "fcode": "013098",
+    "fname": "RHB China A Fund ΓÇô RM Hedged"
+  },
+  {
+    "fcode": "013062",
+    "fname": "RHB China Bond Fund-MYR *"
+  },
+  {
+    "fcode": "013063",
+    "fname": "RHB China Bond Fund-MYR Hedged *"
+  },
+  {
+    "fcode": "013150",
+    "fname": "RHB Contour Technology Fund ΓÇô RM Class B *"
+  },
+  {
+    "fcode": "013151",
+    "fname": "RHB Contour Technology Fund ΓÇô RM Hedged Class B *"
+  },
+  {
+    "fcode": "013025",
+    "fname": "RHB Dana Hazeem"
+  },
+  {
+    "fcode": "011004",
+    "fname": "RHB Dana Islam"
+  },
+  {
+    "fcode": "013142",
+    "fname": "RHB Dynamic Artificial Intelligence Allocator Fund-RM Class *"    
+  },
+  {
+    "fcode": "013143",
+    "fname": "RHB Dynamic Artificial Intelligence Allocator Fund-RMH Class *"   
+  },
+  {
+    "fcode": "013126",
+    "fname": "RHB Dynamic Fund"
+  },
+  {
+    "fcode": "013122",
+    "fname": "RHB Emerging Income Fund ΓÇô RM Class *"
+  },
+  {
+    "fcode": "011038",
+    "fname": "RHB Emerging Markets Bond Fund"
+  },
+  {
+    "fcode": "011005",
+    "fname": "RHB Emerging Opportunity Unit Trust"
+  },
+  {
+    "fcode": "011023",
+    "fname": "RHB Energy Fund"
+  },
+  {
+    "fcode": "013026",
+    "fname": "RHB Entrepreneur Fund"
+  },
+  {
+    "fcode": "011035",
+    "fname": "RHB Equity Trust"
+  },
+  {
+    "fcode": "013103",
+    "fname": "RHB ESG Multi-Asset Fund ΓÇô RM-Hedged Class *"
+  },
+  {
+    "fcode": "013031",
+    "fname": "RHB European Equity Fund - RM Class *"
+  },
+  {
+    "fcode": "013153",
+    "fname": "RHB European Equity Fund - RM-Hedged Class *"
+  },
+  {
+    "fcode": "013154",
+    "fname": "RHB Global Absolute Return Fund - RM Class *"
+  },
+  {
+    "fcode": "013124",
+    "fname": "RHB Global Absolute Return Fund -RM Hedged *"
+  },
+  {
+    "fcode": "013058",
+    "fname": "RHB Global Artificial Intelligence Fund-RM Hedged"
+  },
+  {
+    "fcode": "013137",
+    "fname": "RHB Global Equity Premium Income Fund - RM Class B *"
+  },
+  {
+    "fcode": "013138",
+    "fname": "RHB Global Equity Premium Income Fund - RM Hedged Class B *"      
+  },
+  {
+    "fcode": "011037",
+    "fname": "RHB Global Equity Yield Fund"
+  },
+  {
+    "fcode": "013044",
+    "fname": "RHB Global Macro Opportunities Fund-RM *"
+  },
+  {
+    "fcode": "011026",
+    "fname": "RHB Gold And General Fund"
+  },
+  {
+    "fcode": "013073",
+    "fname": "RHB Gold Fund-MYR Class"
+  },
+  {
+    "fcode": "011011",
+    "fname": "RHB Golden Dragon Fund"
+  },
+  {
+    "fcode": "013006",
+    "fname": "RHB GoldenLife 2030 Fund"
+  },
+  {
+    "fcode": "013003",
+    "fname": "RHB GoldenLife Today Fund"
+  },
+  {
+    "fcode": "011006",
+    "fname": "RHB Growth And Income Focus Trust"
+  },
+  {
+    "fcode": "024007",
+    "fname": "RHB i-Global Sustainable Disruptors Fund-RM Hedged Class"
+  },
+  {
+    "fcode": "024010",
+    "fname": "RHB i-Sustainable Future Technology - RM Hedged Class"
+  },
+  {
+    "fcode": "011007",
+    "fname": "RHB Income Fund 2"
+  },
+  {
+    "fcode": "013009",
+    "fname": "RHB Islamic Bond Fund"
+  },
+  {
+    "fcode": "024003",
+    "fname": "RHB Islamic Global Developed Market - MYR"
+  },
+  {
+    "fcode": "013050",
+    "fname": "RHB Islamic Regional Balanced Fund (RM)"
+  },
+  {
+    "fcode": "011008",
+    "fname": "RHB Kidsave Trust"
+  },
+  {
+    "fcode": "013093",
+    "fname": "RHB Leisure, Lifestyle & Luxury Fund"
+  },
+  {
+    "fcode": "013032",
+    "fname": "RHB Malaysia DIVA Fund"
+  },
+  {
+    "fcode": "011017",
+    "fname": "RHB Malaysia Dividend Fund"
+  },
+  {
+    "fcode": "013121",
+    "fname": "RHB Malaysia Income Fund"
+  },
+  {
+    "fcode": "013010",
+    "fname": "RHB Mudharabah Fund"
+  },
+  {
+    "fcode": "013087",
+    "fname": "RHB Pacific Technology-RM Class *"
+  },
+  {
+    "fcode": "013088",
+    "fname": "RHB Pacific Technology-RM Hedged Class *"
+  },
+  {
+    "fcode": "011012",
+    "fname": "RHB Resources Fund"
+  },
+  {
+    "fcode": "024006",
+    "fname": "RHB Shariah China Focus Fund-RM Class"
+  },
+  {
+    "fcode": "024012",
+    "fname": "RHB Shariah Income Fund"
+  },
+  {
+    "fcode": "011013",
+    "fname": "RHB Small Cap Opportunity Unit Trust"
+  },
+  {
+    "fcode": "011014",
+    "fname": "RHB Small Cap Opportunity Unit Trust"
+  },
+  {
+    "fcode": "013094",
+    "fname": "RHB Sustainable Global Thematic Fund-RM Hedged"
+  },
+  {
+    "fcode": "011015",
+    "fname": "RHB Thematic Growth Fund"
+  },
+  {
+    "fcode": "011031",
+    "fname": "RHB US Focus Equity Fund"
+  },
+  {
+    "fcode": "013129",
+    "fname": "RHB US Growth Fund-RM Class"
+  },
+  {
+    "fcode": "013130",
+    "fname": "RHB US Growth Fund-RM-Hedged Class"
+  },
+  {
+    "fcode": "013136",
+    "fname": "RHB US Value Fund - RM"
+  },
+  {
+    "fcode": "013106",
+    "fname": "RHB US Value Fund - RM Hedged"
+  },
+  {
+    "fcode": "036002",
+    "fname": "Saturna Asean Equity Fund"
+  },
+  {
+    "fcode": "006002",
+    "fname": "TA Asia Pacific Islamic Balanced Fund"
+  },
+  {
+    "fcode": "006014",
+    "fname": "TA Asian Dividend Income Fund"
+  },
+  {
+    "fcode": "006012",
+    "fname": "TA Comet Fund"
+  },
+  {
+    "fcode": "006021",
+    "fname": "TA Dana Afif"
+  },
+  {
+    "fcode": "006015",
+    "fname": "TA Dana Fokus"
+  },
+  {
+    "fcode": "006007",
+    "fname": "TA Dana OptiMix"
+  },
+  {
+    "fcode": "006001",
+    "fname": "TA European Equity Fund"
+  },
+  {
+    "fcode": "006018",
+    "fname": "TA Global Technology Fund"
+  },
+  {
+    "fcode": "006013",
+    "fname": "TA Growth Fund"
+  },
+  {
+    "fcode": "006011",
+    "fname": "TA Islamic Fund"
+  },
+  {
+    "fcode": "006009",
+    "fname": "TA Small Cap Fund"
+  },
+  {
+    "fcode": "006004",
+    "fname": "TA South East Asia Equity Fund"
+  },
+  {
+    "fcode": "029007",
+    "fname": "Templeton Asian Smaller Companies Fund-Class A (MYR) *"
+  },
+  {
+    "fcode": "031004",
+    "fname": "United ASEAN Discovery Fund"
+  },
+  {
+    "fcode": "031091",
+    "fname": "United Bharat Fixed Income Fund - MYR Acc Class *"
+  },
+  {
+    "fcode": "031092",
+    "fname": "United Bharat Fixed Income Fund - MYR Dist Class *"
+  },
+  {
+    "fcode": "031093",
+    "fname": "United Bharat Fixed Income Fund - MYR Hedged Acc Class *"
+  },
+  {
+    "fcode": "031094",
+    "fname": "United Bharat Fixed Income Fund - MYR Hedged Dist Class *"        
+  },
+  {
+    "fcode": "031042",
+    "fname": "United ESG Series - Conservative Bond Fund (MYR)"
+  },
+  {
+    "fcode": "031025",
+    "fname": "United Global Durable Equity Fund-MYR Hedged"
+  },
+  {
+    "fcode": "031113",
+    "fname": "United Global Emerging Markets Opportunity Fund - MYR Hedged *"   
+  },
+  {
+    "fcode": "031037",
+    "fname": "United Global Healthcare Fund Class A MYR"
+  },
+  {
+    "fcode": "031038",
+    "fname": "United Global Healthcare Fund Class A MYR(Hedged)"
+  },
+  {
+    "fcode": "031116",
+    "fname": "United Global Premium Opportunity Fund - MYR Dist *"
+  },
+  {
+    "fcode": "031117",
+    "fname": "United Global Premium Opportunity Fund - MYR Hedged Dist *"       
+  },
+  {
+    "fcode": "031014",
+    "fname": "United Global Quality Equity - MYR Hedged"
+  },
+  {
+    "fcode": "031019",
+    "fname": "United Global Technology Fund - MYR"
+  },
+  {
+    "fcode": "031020",
+    "fname": "United Global Technology Fund - MYR Hedged"
+  },
+  {
+    "fcode": "031084",
+    "fname": "United Global Transformation Fund - MYR"
+  },
+  {
+    "fcode": "031085",
+    "fname": "United Global Transformation Fund - MYR Hedged"
+  },
+  {
+    "fcode": "031012",
+    "fname": "United Golden Opportunity - MYR Hedged"
+  },
+  {
+    "fcode": "031052",
+    "fname": "United Great Dragon Fund-MYR Hedged"
+  },
+  {
+    "fcode": "031005",
+    "fname": "United Income Plus Fund - MYR"
+  },
+  {
+    "fcode": "031107",
+    "fname": "United Intelligence Series ΓÇô Asia Equity Fund MYR Acc Class"      
+  },
+  {
+    "fcode": "031121",
+    "fname": "United Intelligence Series-Greater China Fund AUDH Acc Class"     
+  },
+  {
+    "fcode": "031122",
+    "fname": "United Intelligence Series-Greater China Fund GBPH Acc Class"     
+  },
+  {
+    "fcode": "031123",
+    "fname": "United Intelligence Series-Greater China Fund MYR Acc Class"      
+  },
+  {
+    "fcode": "031124",
+    "fname": "United Intelligence Series-Greater China Fund MYRH Acc Class"     
+  },
+  {
+    "fcode": "031125",
+    "fname": "United Intelligence Series-Greater China Fund RMBH Acc Class"     
+  },
+  {
+    "fcode": "031126",
+    "fname": "United Intelligence Series-Greater China Fund SGDH Acc Class"     
+  },
+  {
+    "fcode": "031127",
+    "fname": "United Intelligence Series-Greater China Fund USD Acc Class"      
+  },
+  {
+    "fcode": "031103",
+    "fname": "United Intelligence SeriesΓÇôAsia Equity Fund MYRH Acc Class"       
+  },
+  {
+    "fcode": "031018",
+    "fname": "United Japan Discovery Fund (MYR Hedged)"
+  },
+  {
+    "fcode": "031017",
+    "fname": "United Japan Discovery Fund (MYR)"
+  },
+  {
+    "fcode": "031041",
+    "fname": "United Malaysia Fund-MYR Class A"
+  },
+  {
+    "fcode": "031078",
+    "fname": "United Vietnam Equities Fund - MYR Hedged"
+  },
+  {
+    "fcode": "031050",
+    "fname": "United-i ESG Series-High Quality Sukuk Fund-MYR"
+  },
+  {
+    "fcode": "031031",
+    "fname": "United-i Global Balanced - MYR Class"
+  },
+  {
+    "fcode": "031032",
+    "fname": "United-i Global Balanced ΓÇô MYR Hedged Class"
+  },
+  {
+    "fcode": "018099",
+    "fname": "US-Canada Income and Growth *"
+  }
+]

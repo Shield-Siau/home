@@ -1,0 +1,2339 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <meta charset="UTF-8">
+  <!--<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>-->
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes' name='viewport'>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="description" content="Low Sales Charges. Over 300 Funds. Value For Money. Types: Unit Trust, Mutual Funds, Equity Funds, Money Market Funds">
+  <meta name="keywords" content="eunittrust, unittrust, Mutual, Funds,Equity, Money ,Market,Malaysia ,investors ">
+  <meta name="author" content="eunittrust.com.my">
+
+
+
+    <title>eunittrust.com.my | It's a matter of trust</title>
+	
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="https://www.eunittrust.com.my/Scripts/js/images/favicon.ico?"/>
+
+    <!--CSS-->
+  	<link href="/Venkat/bootstrap.min.css" rel="stylesheet">
+    <link href="/Venkat/animate.min.css" rel="stylesheet">
+    <link href="/Venkat/Footer.css" rel="stylesheet">
+    <link href="/Venkat/style.css" rel="stylesheet">
+    <!--End-->
+    
+    <script src="/Scripts/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="/Scripts/Common/Encryption.js" type="text/javascript"></script>
+	  <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+ <!-- <script src='https://www.google.com/recaptcha/api.js' async defer></script>  -->
+<script type="text/javascript">
+    function OnSubmit(token) {
+        document.getElementById("loginForm").submit();
+    }
+</script>
+
+<!--<script src="https://chatbot.phillipcapital.com.my/webChatService/scripts/plugin.mjs"></script>-->
+<!--Start of Zendesk Chat Script-->
+<!--<script type="text/javascript">
+		window.$zopim || (function (d, s) {
+			var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+			d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+				z.set.
+				_.push(o)
+			}; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+			$.src = "https://v2.zopim.com/?5A6K8NLIwobqC70BeHM2AfZxbHrdHx4r"; z.t = +new Date; $.
+			type = "text/javascript"; e.parentNode.insertBefore($, e)
+		})(document, "script");
+	</script>-->
+<!--End of Zendesk Chat Script-->
+    
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.eunittrust.com.my/webapi/Home/WebAPIAdapter?v=1.0&amp;m=demo"></script>
+        <script type="text/javascript" src="/Scripts/GWM/moment.min.js"></script>
+        <script type="text/javascript" src="/Scripts/GWM/jquery.number.js"></script>
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        <script type="text/javascript">
+	var FundType="";
+
+	 $(document).ready(function(){
+        var WEBroot = localStorage.getItem("WEBroot");
+		if(WEBroot != null && WEBroot == 'MAM')
+		{
+		window.location.replace(window.location.href.replace('/Home/','/MAM/'));
+		}
+
+     });
+
+		$(function () {
+			var html = ""
+				, fcode = "001100"
+				, fmcode = "001";
+
+			// predefined mapping of merged utmc's
+			switch (fmcode) {
+				case "012": case "015": case "016":
+					fmcode = "004";
+					break;
+				case "014":
+					fmcode = "010";
+					break;
+				case "011":
+					fmcode = "013";
+					break;
+				case "002":
+					fmcode = "019";
+					break;
+
+			}
+
+			 localStorage.setItem('investFundCode', fcode);
+
+
+			  var PrsFundData = localStorage.getItem("PrsFundData");
+			  if(PrsFundData!="" && PrsFundData!= null)
+			  {
+			   PrsFundData = JSON.parse(PrsFundData);
+			   var filteredData = $.grep(PrsFundData.v, function (val) {
+                                 return (val.fcode == fcode)
+                                  });
+				if (filteredData.length > 0)
+		        {
+		        FundType="PRS";
+		         }
+				 else{
+				 FundType ="";
+				 }
+			  }
+
+
+
+
+		  	if(fmcode=="043"){
+			html = "<center><img src='/Scripts/js/images/fcode/" + fmcode + ".jpg' style='cursor:pointer;' width='auto' height='250'/><form id='utmc' method='post' action='/Home/Fund'><input type='hidden' name='fcode' value='" + fmcode + "' /></form></center>";
+		  	}
+			else{
+			html = "<img src='/Scripts/js/images/fcode/" + fmcode + ".jpg' style='cursor:pointer;' class='img-fluid mx-auto d-block'/><form id='utmc' method='post' action='/Home/Fund'><input type='hidden' name='fcode' value='" + fmcode + "' /></form>";
+			}
+
+            $("#logo").html(html);
+
+			$("#logo img").click(function () {
+				localStorage["nav_bar"] = "job2";
+				$("#utmc").submit();
+			});
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GWM_Fund_PriceSummary),
+                   { fcode: fcode },
+                   function (data, status) {
+                   	console.log("Get Fund Manager Name : " + status);
+                   	//                        console.log(data);
+
+                   	if (data.b) {
+                   		if (data.v) {
+                   			// assign values
+                   			$("#fname").text(data.v[0].fname);
+                   		}
+                   	}
+                   }
+            );
+
+            $.post(webapi.buildURL(webapi.urls.eUTMgmt.USP_GetNAVpriceInfo),
+                { fundcode: fcode.replace('002001', '002500').replace('001023', '023019').replace('001019', '023014').replace('001017', '023012').replace('001020', '023016').replace('001021', '023017').replace('001007', '023001').replace('001008', '023002').replace('001022', '023018').replace('001015', '023010').replace('001023', '023019').replace('001012', '023007').replace('001013', '023008').replace('001016', '023011').replace('001024', '023022').replace('001025', '023023').replace('001009', '023003').replace('001018', '023013').replace('001010', '023005').replace('001011', '023006') },
+                function (data, status) {
+                    console.log("Get NAV Price : " + status);
+                    //                   	console.log(data);
+
+                    if (data.b) {
+
+                        //                   		if (data.rows) {
+
+                        var priceList = [];
+
+                        // assign values
+                        $.each(data.rows, function (i, e) {
+
+                            var resultdate = moment(e.data).format('DD/MM/YYYY');
+                            //priceList.push([(new Date(e.data)).getTime(), parseFloat(e.bid)]);
+                            //priceList.push([resultdate, parseFloat(e.bid)]);
+                            //priceList.push([resultdate, parseFloat(e.bid)]);
+
+
+                            var day = (parseInt((e.data.split("T")[0]).split("-")[2]));
+                            var mon = (parseInt((e.data.split("T")[0]).split("-")[1]));
+                            if (day == 31) {
+                                day = '01';
+                                mon = mon + 1;
+                            }
+                            else {
+                                day = day + 1;
+                                mon = mon;
+                            }
+
+                            var datefund = ((e.data.split("T")[0]).split("-")[0] + "-" + mon + "-" + day);
+
+                            // priceList.push([ (new Date(datefund)).getTime(), parseFloat(e.bid)]);
+
+                            // priceList.push([(new Date(e.data)).getTime(), parseFloat(e.bid)]);
+
+
+                            var d = new Date((e.data.split("T")[0]).replace(/-/g, "/"));
+                            d.setDate(d.getDate() + 1);
+                            priceList.push([(new Date(d)).getTime(), parseFloat(e.bid)]);
+
+                        });
+                        console.log("Loading Charts");
+                        Highcharts.stockChart("charts1", {
+
+                            chart: {
+                                //commented to hide ? background for Safari/Apple view
+                                //plotBackgroundImage: "/Views/asset/image/eut-logo-web.png"
+                            }
+                            ,
+                            exporting: {
+                                enabled: true,
+                                buttons: {
+                                    contextButton: {
+                                        menuItems: [
+                                            'viewFullscreen',
+                                            'printChart',
+                                            {
+                                                text: 'Download PNG',
+                                                onclick: function () {
+                                                    document.getElementById('downloadOverlay').style.display = 'flex';
+                                                    this.exportChart({ type: 'image/png' });
+                                                    setTimeout(function () {
+                                                        document.getElementById('downloadOverlay').style.display = 'none';
+                                                    }, 5000);
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            rangeSelector: {
+                                selected: 1
+                                // begin: leng (15 jan 2018)
+                                , buttons: [
+                                    { type: "month", count: 1, text: "1m" }
+                                    , { type: "month", count: 3, text: "3m" }
+                                    , { type: "month", count: 6, text: "6m" }
+                                    , { type: "ytd", text: "YTD" }
+                                    , { type: "year", count: 1, text: "1y" }
+                                    , { type: "all", text: "5y" }
+                                ]
+                                // end: leng (15 jan 2018)
+                            },
+                            series: [{
+                                name: "Price"
+                                , data: priceList
+                                , tooltip: {
+                                    valueDecimals: 4
+                                }
+                            }]
+                            , credits: {
+                                text: "eUnittrust.com.my"
+                                , href: "https://www.eunittrust.com.my"
+                            }
+                        });
+
+                        //                   		}
+                    }
+                }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinderDetails),
+                   { fundcode: fcode },
+                   function (data, status) {
+                   	console.log("Get Fund Finder details : " + status);
+                   	//                        console.log(data);
+
+                   	if (data.b) {
+                   		if (data.v) {
+                   			// assign values
+                   			if (data.v.txtcurrentnav != null) {
+                   				//							$("#txtcurrentnav").text($.number(data.v.txtcurrentnav, 4));
+                   				//                            $("#txtcurrentnav").text(data.v.txtcurrentnav.toFixed(4));
+                   			}
+
+                   			$("#txthighestnav").text(data.v.txthighestnav);
+                   			$("#lowestnav").text(data.v.lowestnav);
+                   			$("#txtinvestmentobject").append('<p>'+data.v.txtinvestmentobject+'</p>');
+                   			$("#txtinvestmentpolicy").text(data.v.txtinvestmentpolicy);
+                   			$("#txtbenchmark").text(data.v.txtbenchmark);
+                   			$("#txtassetclass").text(data.v.txtassetclass);
+                   			$("#txtfundtype").text(data.v.txtfundtype);
+                   			$("#txtgeography").text(data.v.txtgeography);
+                   			$("#txtfundsector").text(data.v.txtfundsector);
+
+                   			if (data.v.txtinceptiondate != null) {
+                   				$("#txtinceptiondate").text(moment(data.v.txtinceptiondate).format("DD MMM YYYY"));
+                   			}
+
+                   			if (data.v.txtinceptionprice != null) {
+                   				$("#txtinceptionprice").text(data.v.txtinceptionprice.toFixed(4));
+                   			}
+
+                   			$("#txtfundcurrency").text(data.v.txtfundcurrency);
+                   			$("#txtfundsize").text(data.v.txtfundsize);
+                   			$("#txtfundonline").text(data.v.txtfundonline);
+                   		}
+                   	}
+                   }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinderAP),
+                    {
+                    	fcode: fcode,
+                    	SearchFor: "Annual",
+                    	sidx: "AccountType",
+                    	sord: "sc"
+                    },
+                   function (data, status) {
+
+                   	console.log("Get Fund Finder Annual Perform : " + status);
+                   	//                        console.log(data);
+
+                   	if (data.b) {
+
+                   		html =
+						"<table class='table pre_table'>"
+							+ "<thead>"
+								+ "<tr>"
+									+ "<th style='width:16%;'>Period</th>"
+									+ "<th style='width:28%;' class='text-right'>Annualized Performance Return (%)</th>"
+									+ "<th style='width:28%;' class='text-right'>Volatility (%)</th>"
+									+ "<th style='width:28%;' class='text-right'>Risk Adjusted Performance (%)</th>"
+								+ "</tr>"
+							+ "</thead>"
+							+ "<tbody>"
+
+                   		if (data.rows) {
+                   			$.each(data.rows, function (i, e) {
+                   				// assign values
+                   				html +=
+									"<tr>"
+										+ "<th>" + e.period + "</th>";
+
+                   				if (e.performanceReturn == null || isNaN(e.performanceReturn)) {
+                   					html += "<td class='text-right'>N/A</td>";
+                   				}
+                   				else {
+                   					//									html += "<td class='text-right'>" + $.number(e.performanceReturn, 2) + "</td>";
+                   					html += "<td class='text-right'>" + e.performanceReturn.toFixed(2) + "</td>";
+
+                   				}
+
+                   				if (e.Volatility == null || isNaN(e.Volatility)) {
+                   					html += "<td class='text-right'>N/A</td>";
+                   				}
+                   				else {
+                   					//									html += "<td class='text-right'>" + $.number(e.Volatility, 2) + "</td>";
+                   					html += "<td class='text-right'>" + e.Volatility.toFixed(2) + "</td>";
+
+                   				}
+
+                   				if (e.riskAdjustedperformance == null || isNaN(e.riskAdjustedperformance)) {
+                   					html += "<td class='text-right'>N/A</td>";
+                   				}
+                   				else {
+                   					//									html += "<td class='text-right'>" + $.number(e.riskAdjustedperformance, 2) + "</td>";
+                   					html += "<td class='text-right'>" + e.riskAdjustedperformance.toFixed(2) + "</td>";
+                   				}
+
+                   				html += "</tr>"
+                   			});
+                   		}
+                   		else {
+                   			html += "<td colspan='4'><i>No record(s) found</i></td>";
+                   		}
+
+                   		html += "</tbody>"
+							+ "</table>" + "<sup>" +
+							"<p style='font-size:9px; text-align:Justify; line-height:1.5em'>Remark: *The performance figures are calculated using NAV-to-NAV prices and does not take into account any income distributions or unit splits of the fund. Refer to Fund's Factsheet for official performance figures of fund.</p>"
+							+ "</sup>";
+
+
+                   		$("#tblAnnualizedPerformance").html(html);
+                   	}
+                   }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinder_RevelentCharges),
+                   { fundcode: fcode },
+                   function (data, status) {
+                   	console.log("Get Fund Finder Charges : " + status);
+//                   	console.log(data);
+
+                   	if (data.b) {
+
+                   		if (data.v) {
+
+                   			// assign values
+
+                   			$("#txtMaximumSalesCharge_Cash").text((parseFloat(data.v.txtMaximumSalesCharge_Cash)).toFixed(2) + "%")
+                   			$("#txtMaximumSalesCharge_EPF").text(data.v.txtMaximumSalesCharge_EPF);
+
+                   			//$("#txtOnlineSalesCharge_Cash").text(result.v.txtOnlineSalesCharge_Cash);
+                   			if (IsNull(data.v.txtOnlineSalesCharge_Cash, "") != "N/A") {
+                   				//$("#txtOnlineSalesCharge_Cash").text((parseInt(data.v.txtOnlineSalesCharge_Cash)).toFixed(2) + "%");
+                                                $("#txtOnlineSalesCharge_Cash").text((data.v.txtOnlineSalesCharge_Cash).substring(0, 4) + "%");
+                   			}
+                            // if(fcode=="033003")
+							// {
+							//  $("#txtOnlineSalesCharge_Cash").text("N/A");
+							// }
+							 if($("#txtfundonline").text()=="No") // fund offiline
+							 {
+							   $("#txtOnlineSalesCharge_Cash").text("N/A");
+							    $("#FundInvest").attr("href", "#");
+							 }
+                   			$("#txtOnlineSalesCharge_EPF").text(data.v.txtOnlineSalesCharge_EPF);
+                   			$("#txtSwitchingCharge_Cash").text(data.v.txtSwitchingCharge_Cash);
+                   			$("#txtSwitchingCharge_EPF").text(data.v.txtSwitchingCharge_EPF);
+                   			$("#txtRedemptionCharges_Cash").text(data.v.txtRedemptionCharges_Cash + "%");
+                   			$("#txtRedemptionCharges_EPF").text(data.v.txtRedemptionCharges_EPF);
+                   			$("#txtAnnualManagementFee_Cash").text(data.v.txtAnnualManagementFee_Cash);
+                   			$("#txtAnnualManagementFee_EPF").text(data.v.txtAnnualManagementFee_EPF);
+                   			$("#txtAnnualTrusteeFee_Cash").text(data.v.txtAnnualTrusteeFee_Cash);
+                   			$("#txtAnnualTrusteeFee_EPF").text(data.v.txtAnnualTrusteeFee_EPF);
+                   			$("#txtExpenseRatio_Cash").text(data.v.txtExpenseRatio_Cash);
+                   			$("#txtExpenseRatio_EPF").text(data.v.txtExpenseRatio_EPF);
+                   		}
+                   	}
+                   }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinder_InvestmentAmount),
+                   { fundcode: fcode },
+                   function (data, status) {
+                   	console.log("Get Fund Finder Charges : " + status);
+                   	//                        console.log(data);
+
+                   	if (data.b) {
+
+                   		if (data.v) {
+
+                   			// assign values
+                   			$("#txtMinimumInvestmentAmount_Cash").text(IsNull(data.v.txtMinimumInvestmentAmount_Cash, "N/A"));
+                   			$("#txtMinimumInvestmentAmount_EPF").text(IsNull(data.v.txtMinimumInvestmentAmount_EPF, "N/A"));
+                   			$("#txtMinimumSubsequentInvestment_Cash").text(IsNull(data.v.txtMinimumSubsequentInvestment_Cash, "N/A"));
+                   			$("#txtMinimumSubsequentInvestment_EPF").text(IsNull(data.v.txtMinimumSubsequentInvestment_EPF, "N/A"));
+                   			$("#txtMinimumRedemptionAmount_Cash").text(IsNull(data.v.txtMinimumRedemptionAmount_Cash, "N/A"));
+                   			$("#txtMinimumRedemptionAmount_EPF").text(IsNull(data.v.txtMinimumRedemptionAmount_EPF, "N/A"));
+                   			$("#txtMinimumRequiredHolding_Cash").text(IsNull(data.v.txtMinimumRequiredHolding_Cash, "N/A"));
+                   			$("#txtMinimumRequiredHolding_EPF").text(IsNull(data.v.txtMinimumRequiredHolding_EPF, "N/A"));
+                   		}
+                   	}
+                   }
+            );
+
+            $.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinder_RSPInvestmentAmount),
+                { fundcode: fcode },
+                function (data, status) {
+                    if (data.b) {
+                        $("#txtMinimumInitialInvestmentRSP_Cash").text(IsNull(data.rows[0].MinInitialInvAmt, "N/A"));
+                        $("#txtMinimumSubsequentInvestmentRSP_Cash").text(IsNull(data.rows[0].MinSubsqInvAmt, "N/A"));
+                    }
+                }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinder_FundInfo),
+                   { fundcode: fcode },
+                   function (data, status) {
+                   	if (data.b) {
+
+                   		if (data.v) {
+
+                   			// assign values
+							console.log("2. "+$("#fname").text());
+							if($("#fname").text().includes("PRS") ||$("#fname").text().includes("Retirement Series") || $("#fname").text().includes("AIA PAM") || $("#fname").text().includes("RetireEasy"))
+							{$("#txtFundSourceInvestmentType").text("PRS");}
+							else
+							{$("#txtFundSourceInvestmentType").text(data.v.txtFundSourceInvestmentType);}
+
+							$("#txtPriceType").text(data.v.txtPriceType);
+                   			$("#txtFundDealingCutOffTime").text(data.v.txtFundDealingCutOffTime);
+                   			$("#txtPriceMadeknownon").text(data.v.txtPriceMadeknownon);
+                   			$("#txtFundCurrency").text(data.v.txtFundCurrency);
+                   		}
+                   	}
+                   }
+            );
+
+			$.post(webapi.buildURL(webapi.urls.eUTMgmt.GetFundFinder_FundFiles),
+                   { fundcode: fcode },
+                   function (data, status) {
+                   	if (data.b) {
+                   		if (data.rows) {
+                   			// begin: prospectus
+                   			html = "";
+
+                   			if (IsNull(data.rows[0].prosfile, "") != "") {
+                   				html += "<a href='/pdf/Prospectus/" + data.rows[0].prosfile + "' target='_blank'><img src='/Content/Images/label-p.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].prosfile2, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Prospectus/" + data.rows[0].prosfile2 + "' target='_blank'><img src='/Content/Images/label-p.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].prosfile3, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Prospectus/" + data.rows[0].prosfile3 + "' target='_blank'><img src='/Content/Images/label-p.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].prosfile4, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Prospectus/" + data.rows[0].prosfile4 + "' target='_blank'><img src='/Content/Images/label-p.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].prosfile5, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Prospectus/" + data.rows[0].prosfile5 + "' target='_blank'><img src='/Content/Images/label-p.jpg' /></a>";
+                   			}
+
+                   			$("#tblprosfile").html(html);
+                   			// end: prospectus
+
+                   			// begin: annual report
+                   			html = "";
+
+                   			if (IsNull(data.rows[0].report1, "") != "") {
+                   				html += "<a href='/pdf/Reports/" + data.rows[0].report1 + "' target='_blank'><img src='/Content/Images/label-ar.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].report2, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].report2 + "' target='_blank'><img src='/Content/Images/label-ar.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].report3, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].report3 + "' target='_blank'><img src='/Content/Images/label-ar.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].report4, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].report4 + "' target='_blank'><img src='/Content/Images/label-ar.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].report5, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].report5 + "' target='_blank'><img src='/Content/Images/label-ar.jpg' /></a>";
+                   			}
+
+                   			$("#tblreport").html(html);
+                   			// end: annual report
+
+                   			// begin: market outlook
+                   			html = "";
+
+                   			if (IsNull(data.rows[0].mktoutlook1, "") != "") {
+                   				html += "<a href='/pdf/MktOutlook/" + data.rows[0].mktoutlook1 + "' target='_blank'><img src='/Content/Images/label-mo.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mktoutlook2, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/MktOutlook/" + data.rows[0].mktoutlook2 + "' target='_blank'><img src='/Content/Images/label-mo.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mktoutlook3, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/MktOutlook/" + data.rows[0].mktoutlook3 + "' target='_blank'><img src='/Content/Images/label-mo.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mktoutlook4, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/MktOutlook/" + data.rows[0].mktoutlook4 + "' target='_blank'><img src='/Content/Images/label-mo.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mktoutlook5, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/MktOutlook/" + data.rows[0].mktoutlook5 + "' target='_blank'><img src='/Content/Images/label-mo.jpg' /></a>";
+                   			}
+
+                   			$("#tblmktoutlook").html(html);
+                   			// end: market outlook
+
+                   			// begin: product highlight sheets
+                   			html = "";
+
+                   			if (IsNull(data.rows[0].mgrComm, "") != "") {
+                   				html += "<a href='/pdf/Reports/" + data.rows[0].mgrComm + "' target='_blank'><img src='/Content/Images/label-hs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mgrComm2, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].mgrComm2 + "' target='_blank'><img src='/Content/Images/label-hs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mgrComm3, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].mgrComm3 + "' target='_blank'><img src='/Content/Images/label-hs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mgrComm4, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].mgrComm4 + "' target='_blank'><img src='/Content/Images/label-hs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].mgrComm5, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Reports/" + data.rows[0].mgrComm5 + "' target='_blank'><img src='/Content/Images/label-hs.jpg' /></a>";
+                   			}
+
+                   			$("#tblmgrComm").html(html);
+                   			// end: product highlight sheets
+
+                   			// begin: fact sheets
+                   			html = "";
+
+                   			if (IsNull(data.rows[0].factsheet1, "") != "") {
+                   				html += "<a href='/pdf/Factsheets/" + data.rows[0].factsheet1 + "' target='_blank'><img src='/Content/Images/label-fs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].factsheet2, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Factsheets/" + data.rows[0].factsheet2 + "' target='_blank'><img src='/Content/Images/label-fs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].factsheet3, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Factsheets/" + data.rows[0].factsheet3 + "' target='_blank'><img src='/Content/Images/label-fs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].factsheet4, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Factsheets/" + data.rows[0].factsheet4 + "' target='_blank'><img src='/Content/Images/label-fs.jpg' /></a>";
+                   			}
+
+                   			if (IsNull(data.rows[0].factsheet5, "") != "") {
+                   				html += "&nbsp; <a href='/pdf/Factsheets/" + data.rows[0].factsheet5 + "' target='_blank'><img src='/Content/Images/label-fs.jpg' /></a>";
+                   			}
+
+                   			$("#tblfactsheet").html(html);
+                   			// end: fact sheets
+                   		}
+                   	}
+                   });
+
+			$('#PopupNAVHistory').click(function () {
+				var NWin = window.open($(this).prop('href'), '', 'scrollbars:yes,height=400,width=400,');
+				if (window.focus) {
+					NWin.focus();
+				} return false;
+			});
+		});
+
+		function IsNull(a, b) {
+			if (a == null) {
+				a = b;
+			}
+			else {
+				switch (typeof (a)) {
+					case "string":
+						a = a.trim();
+						break;
+					default:
+						break;
+				}
+			}
+
+			return a;
+		}
+
+
+		if($("#G_UserID").text()=="-1")
+		{
+
+		}
+		else
+		{
+		  $("#FundInvest").attr("href", "/Home/transaction");
+		}
+
+
+        </script>
+
+
+        <script type="text/javascript">
+
+
+
+
+
+    $(function () {
+        var html = ""
+            , fcode = "001100"
+            , fmcode = "001";
+
+	// predefined mapping of merged utmc's
+			switch (fmcode) {
+				case "012": case "015":
+					fmcode = "004";
+					break;
+				case "014":
+					fmcode = "010";
+					break;
+				case "011":
+					fmcode = "013";
+					break;
+				case "002":
+					fmcode = "019";
+					break;
+			}
+
+        html = "<form id='utmc2' method='post' action='/Home/Fund'><input type='hidden' name='fcode' value='" + fmcode + "' /></form><img src='/Scripts/js/images/fcode/" + fmcode + ".jpg' style='height:120px; cursor:pointer;' />";
+        $("#logo2").html(html);
+
+        $.post(webapi.buildURL(webapi.urls.eUTMgmt.GWM_Fund_PriceSummary), { fcode: fcode },function (data, status) {
+        	if (data.b) {
+            	if (data.v) {
+                    // assign values
+            		$("#fname2").text(data.v[0].fname);
+                }
+            }
+        });
+        var displayResources = $('#display-resources');
+        displayResources.text('Loading data from JSON source...');
+        $.ajax({
+            type: "post",
+            url: webapi.buildURL(webapi.urls.eUTMgmt.USP_GetNAVpriceInfo),
+            //  contentType: "application/json;charset=utf-8",
+            //  dataType: "json",
+            data: { fundcode: fcode.replace('002001', '002500').replace('001023', '023019').replace('001019', '023014').replace('001017', '023012').replace('001020', '023016').replace('001021', '023017').replace('001007', '023001').replace('001008', '023002').replace('001022', '023018').replace('001015', '023010').replace('001023', '023019').replace('001012', '023007').replace('001013', '023008').replace('001016', '023011').replace('001024', '023022').replace('001025', '023023').replace('001009', '023003').replace('001018', '023013').replace('001010', '023005').replace('001011', '023006') },
+            success: function (result) {
+
+
+
+                if (result.b) {
+                	var output = "<table id='NAVtable' class='pre_table'><thead><tr><th style='display:none'>S.NO</th><th align='center'>Bid/NAV Price</th><th align='center'>Dealing Date</th></thead><tbody>";
+
+                    result.rows =sortJSON(result.rows, 'data');
+
+
+
+
+                 //   $.each(result.rows, function (i, e) {
+
+
+			//$("#todayNAV").text(result.rows[0].bid + " (@ " + moment(result.rows[0].data).format('DD/MM/YYYY') + ") ");
+             //           var tdateFrom = moment(result.rows[i].data).format('DD/MM/YYYY');
+              //          var tdateTo = new Date();
+             //           var dateTo = moment(tdateTo).format('DD/MM/YYYY');
+             //           var d1 = tdateFrom.split("/");
+             //           var d2 = dateTo.split("/");
+             //           var from = new Date(d1[2], parseInt(d1[1]) , d1[0])
+              //          var to = new Date(d2[2], parseInt(d2[1]), d2[0])
+
+             //           if (to > from)
+              //          {
+
+              //              var resultdate = moment(result.rows[i].data).format('DD/MM/YYYY');
+            //                output += "<tr><td style='display:none'>" + result.rows[i].$id + "</td><td>" + result.rows[i].bid + "</td><td>" + resultdate + "</td></tr>";
+
+             //           }
+
+
+
+            //        });
+
+					var today = moment(); // Current date
+                    var fiveMonthsAgo = moment().subtract(5, 'months'); // Date 5 months ago
+
+                    $.each(result.rows, function (i, e) {
+                        // Format the date in each row
+                        var rowDate = moment(result.rows[i].data);
+                        var formattedRowDate = rowDate.format('DD/MM/YYYY');
+
+                        // Check if the row date is within the last 5 months
+                        if (rowDate.isBetween(fiveMonthsAgo, today, null, '[]')) {
+                            output += "<tr><td style='display:none'>" + result.rows[i].$id + "</td><td>" + result.rows[i].bid + "</td><td>" + formattedRowDate + "</td></tr>";
+                        }
+                    });
+
+					// Update the DOM with the filtered rows
+					$("#todayNAV").text(result.rows[0].bid + " (@ " + moment(result.rows[0].data).format('DD/MM/YYYY') + ") ");
+
+
+                    output += "</tbody></table>";
+                    $('#display-resources').html(output);
+                    $("table").addClass("table");
+
+
+                }
+            },
+            failure: function () {
+                alert("Error");
+            }
+        });
+
+        function sortJSON(data, key) {
+        	if (data != null)
+        	{
+        		return data.sort(function (a, b) {
+        			var x = a[key];
+        			var y = b[key];
+        			// return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        			return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        		});
+        	}
+
+}
+
+
+    });
+
+        </script>
+    
+
+    <style>
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+		
+		        body {
+            padding-top: 110px;
+        }
+
+        .dropdown.dropdown-lg .dropdown-menu {
+            margin-top: -1px;
+            padding: 6px 20px;
+        }
+
+        .input-group-btn .btn-group {
+            display: flex !important;
+        }
+
+        .btn-group .btn {
+            border-radius: 0;
+            margin-left: -1px;
+        }
+
+            .btn-group .btn:last-child {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+
+        .btn-group .form-horizontal .btn[type="submit"] {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .form-horizontal .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .form-group .form-control:last-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        /*.form-control {
+            border-radius: .8px 0px 0px .8px;
+            background: url(../Scripts/EMIS/images/search-icon.png) no-repeat;
+            background-position: right center !important;
+            background-position: 1056px !important;
+            padding-right: 5px;
+            background-color: white;
+            border-radius: 7px 0px 0px 7px;
+        }*/
+
+        #fundList a {
+            display: block;
+            background-color: white;
+            width: 100%;
+            padding-left: 12px;
+        }
+
+        .icon-Drop-down {
+            top: 3px;
+        }
+
+        .dropdown-content {
+            padding-right: 40px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+            .dropdown-content:after {
+                content: "";
+                display: block;
+                width: 96%;
+                margin: 0 auto;
+                height: 1px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -3px;
+            }
+
+            .dropdown-content.toggle:after {
+                background-color: #cccccc;
+            }
+
+            .element.style{
+                border:none;
+            }
+        @media (max-width: 639px) {
+            .funds_list a {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .dropdown-content.toggle .dropdown-arrow i {
+                max-resolution: 2px;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .dropdown-content {
+                padding-right: 30px;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .form-control {
+                min-width: auto;
+                padding-left: 10px;
+                font-size: 13px;
+            }
+        }
+
+        .dropdown-arrow {
+            display: block;
+            width: 40px;
+            height: 100%;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px 2px 2px 2px;
+            cursor: pointer;
+            background-color: white;
+            border-radius: 0px 7px 7px 0px;
+        }
+
+            .dropdown-arrow i {
+                color: #b7b7b7;
+                font-size: 14px;
+            }
+
+        @media screen and (min-width: 768px) {
+            #adv-search {
+                width: 500px;
+                margin: 0 auto;
+            }
+
+            .dropdown.dropdown-lg {
+                position: static !important;
+            }
+
+                .dropdown.dropdown-lg .dropdown-menu {
+                    min-width: 500px;
+                }
+        }
+        
+        .btn-login {
+            padding: 7px 20px;
+            background: #0094da;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-open-acct {
+            padding: 7px 9px;
+            background: #f78e1e;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .header_tagline {
+            background: #002e6e;
+            color: #ffffff;
+            font-family: 'Open Sans',Arial,sans-serif;
+            padding: 5px 0px;
+        }
+
+        #searchBarPad {
+            padding-top: 40px;
+        }
+
+        .drpdwn {
+            position: relative;
+            display: inline-block;
+        }
+
+        .drpdwn-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            /*min-width: 160px;*/
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius:3px
+        }
+
+        .drpdwn-content span {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .drpdwn-content span:hover {
+            background-color: #ddd;
+        }
+
+        .drpdwn:hover .drpdwn-content {
+            display: block;
+            
+        }
+
+        .loginBox:hover {
+            /*background: #61666c;*/
+        }
+        hr.border {
+            border: 3px solid #002e6e!important;
+            width: 60px;
+        }
+        /*.text-deco {
+            border-bottom: 5px solid rgb(0, 51, 102);
+            margin: 0px auto;
+        }*/
+        @media screen and (max-width: 991px) {
+            .webView {
+                display:none;
+            }
+            .mobileView {
+                display: block;
+            }
+
+        }
+
+        @media screen and (min-width: 992px) {
+            .webView {
+                display: block;
+            }
+
+            .mobileView {
+                display: none;
+            }
+        }
+
+        @media screen (min-width: 992px) and (max-width: 1199px) {
+            #searchBarPad {
+                padding-top: 40px;
+            }
+        }
+		
+    </style>
+    
+	
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W54QR4');</script>
+<!-- End Google Tag Manager -->
+	
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  '');
+  fbq('init', '1734196036859743');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1734196036859743&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->	
+
+
+
+
+
+</head>
+<!--<body class="bg-image-full" style="background-image: url('/Venkat/d2.png');">-->
+<body class="bg-image-full" style="background-color: #e8e9ea;">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W54QR4"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript>
+    </noscript>
+    <header id="header" class="fixed-top">
+        <div class="header_tagline">
+            <div class="container webView">
+                <div class="row">
+                    <div class="row-lg-9 mt-2">
+                        <i class="fa fa-mobile" aria-hidden="true"></i>  603 2783 0300 &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-comments-o" aria-hidden="true"></i> Live Chat &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> <a href="/Home/AboutUs" style="color:#ffffff; text-decoration:none; cursor:pointer;">About Us</a> &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> <a href="/Home/ContactUs##investor_center" style="color:#ffffff; text-decoration:none; cursor:pointer;">Locate Us</a> &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-envelope" aria-hidden="true"></i> <a href="/Home/ContactUs" style="color:#ffffff; text-decoration:none; cursor:pointer;">Contact Us</a> &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-question-circle" aria-hidden="true"></i> <a href="/Home/FAQ" style="color:#ffffff; text-decoration:none; cursor:pointer;">FAQs</a> &nbsp;&nbsp;&nbsp;
+                        <!--<a href="/Home/accountholding" style="color:white;" id="PostLoginMenu"><span>Back</span></a>-->
+                    </div>
+
+                    <!--LOGIN start-->
+                    <div class="col-lg-5 drpdwn loginBox" id="BeginForm1">
+
+                        <div class="row pl-8 pr-8">
+                            <div class="col-8">
+                                <a>&nbsp;&nbsp;&nbsp;</a>
+                            </div>
+                            <div class="col-4">
+                                <a type="button" href="/Home/Login" class="btn btn-login float-right">Login</a>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- LOGIN end-->
+
+
+            <div class="container mobileView">
+                <div class="row">
+                    <div class="col-1">
+                        <a></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="/Home/ContactUs" style="color:white;"><i class="fa fa-mobile" aria-hidden="true" href="/Home/ContactUs"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <i class="fa fa-comments-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-1">
+                        <a href="/Home/AboutUs" style="color:white;"><i class="fa fa-info-circle" aria-hidden="true" href="/Home/ContactUs"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="/Home/ContactUs" style="color:white;"><i class="fa fa-map-marker" aria-hidden="true" href="/Home/ContactUs"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="/Home/ContactUs" style="color:white;"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-3">
+                        <a href="/Home/FAQ" style="color:white;"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-3" style="background:#0094da; text-align:center;">
+                        <a href="/Home/Login" style="color:white;"><span>Login</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navOrange" style="padding-right: 10px; padding-left: 10px; padding-bottom: 10px;">
+            <div class="container">
+                <a class="navbar-brand" href="/Home/Index" style="text-decoration:none;">
+                    <!-- <span class="color_orange">e<span class="color_blue">Unittrust</span>.com.my</span>-->
+                    <img src="/Scripts/js/images/Slider/LogoeUT.jpg" alt="eunittrust">
+                </a>
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+                <div class="fb-like" data-href="https://www.facebook.com/eUnitTrust.com.my" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav" id="navMobile">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/Home/Index">HOME</a>
+                        </li> -->
+                        <!--
+                                                <li class="nav-item d-md-block d-lg-none">
+                                                    <a class="nav-link" href="#">LOGIN</a>
+                                                </li>
+                        -->
+                        <li class="nav-item d-md-block d-lg-none">
+                            <a class="nav-link" href="/Home/OpenAcc">OPEN AN ACCOUNT</a>
+                        </li>
+                        <li class="nav-item dropdown" id="gettingStartedDropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownGettingStarted">
+                                GETTING STARTED
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" id="gettingStartedMenu">
+                                <a class="dropdown-item" href="/Home/Introduction">INTRODUCTION</a>
+                                <a class="dropdown-item" href="/Home/HowTo">HOW TO</a>
+                                <a class="dropdown-item" href="/Home/OpenAcc">REGISTRATION</a>
+                                <a class="dropdown-item" href="/pdf/eUTOpeningForm.pdf">eUT OPENING FORM</a>
+                                <a class="dropdown-item" href="/Home/FundCharges">OUR CHARGES</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="FundsDropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownFunds">
+                                FUNDS
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" id="FundsMenu">
+                                <a class="dropdown-item" href="/Home/UNIT-TRUST-PROVIDERS">UNIT TRUST PROVIDER</a>
+                                <a class="dropdown-item" href="/Home/FUND-ANNOUNCEMENTS">FUND ANNOUNCEMENTS</a>
+                                <a class="dropdown-item" href="/Home/FUND-RANKINGS">FUND RANKINGS</a>
+                                <!--<a class="dropdown-item" href="/Home/EPF">EPF</a>
+                                <a class="dropdown-item" href="/Home/EPF-CALCULATOR">EPF CALCULATOR</a>-->
+                                <a class="dropdown-item" href="/Home/Fund_PRSIntro">PRIVATE RETIREMENT SCHEME</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="ResearcDropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownResearc">
+                                RESEARCH & ARTICLES
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" id="ResearcMenu">
+                                <a class="dropdown-item" href="/Home/ResMarket">MARKET INFORMATION</a>
+                                <a class="dropdown-item" href="/Home/Res_FundAllo">PHILLIP FUND FOCUS & ALLOCATOR</a>
+                                <a class="dropdown-item" href="/Home/Res_Webcast">IDEA INFORMATION</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="BlogDropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownBlog">
+                                EDUCATION CENTRE
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" id="BlogMenu">
+                                <a class="dropdown-item" href="/Home/Edu_IntroUT">INTRODUCTION TO UNIT TRUST</a>
+                                <a class="dropdown-item" href="/Home/Edu_SecondIntro">RISK AND GLOSSARY</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="Blog2Dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownBlog2">
+                                COMPLIANCE
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right"  id="Blog2Menu">
+                                <a class="dropdown-item" href="/Home/Com_Compliance">DISCLAIMER</a>
+                                <a class="dropdown-item" href="/PDF/Terms_And_Conditions.pdf" target="_blank">TERMS & CONDITIONS</a>
+                                <a class="dropdown-item" href="/Home/Com_Privacy_Policy">PRIVACY POLICY</a>
+                                <a class="dropdown-item" href="/Home/Com_IT_Policy">SECURITY AND POLICY</a>
+                                <a class="dropdown-item" href="/Home/SC-INVESTOR-ALERT">SC INVESTOR ALERT</a>
+                                <a class="dropdown-item" href="/Home/Com_LoanRisk">UT LOAN RISK</a>
+                                <a class="dropdown-item" href="/Home/Com_Notice">NOTICE</a>
+                                <a class="dropdown-item" href="https://www.fmos.org.my/en/">Financial Markets Ombudsman Service (FMOS)</a>
+                                <a class="dropdown-item" href="/Home/Com_PDPA">PDPA</a>
+                                <a class="dropdown-item" href="/Home/WHISTLEBLOWING-POLICY">WHISTLEBLOWING POLICY</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="PostLoginMenu">
+                            <a class="nav-link dropdown-toggle" href="/Home/Accountholding" id="navbarDropdownBlog" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                MY ACCOUNT
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                                <a class="dropdown-item" href="/Home/accountholding">ACCOUNT HOLDINGS</a>
+                                <a class="dropdown-item" href="/Home/transaction">TRANSACTION</a>
+                                <a class="dropdown-item" href="/Home/transactionhistory">ONLINE TRANSACTION HISTORY</a>
+                                <a class="dropdown-item" href="/Home/transactionhistoryMain">TRANSACTION HISTORY</a>
+                                <a class="dropdown-item" href="/Home/eStatement"> E Statement</a>
+                                <a class="dropdown-item" href="/Home/RSPFundList">REGULAR SAVINGS PLAN</a>
+                                <a class="dropdown-item" href="#" id="LogOut"> LOG OUT </a>
+                            </div>
+                        </li>
+                        <!--<li class="nav-item" id="PreLogin">   <a href="/Home/Login" class="nav-link LoginAndTransaction"  id="navbarDropdownBlog" aria-haspopup="true" aria-expanded="false">LOGIN</a> </li>-->
+                        <li class="nav-item" id="PreLogin"><button type="button" class="btn btn-open-acct" data-bs-toggle="modal" data-bs-target="#myModal_OpenAcc">Open An Account</button></li>
+                        <li class="nav-item dropdown" style="display:none">
+                            <a href="#" class=" nav-link dropdown-toggle" data-bs-toggle="dropdown" id="navbarDropdownBlog" aria-haspopup="true" aria-expanded="false">LOGIN</a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+<form action="/Home/Login" autocomplete="off" class="form-horizontal" id="loginForm_nav" method="post" role="form"><input id="pinR_nav" name="pinR_nav" type="hidden" value="" /><input id="pinR_only8_nav" name="pinR_only8_nav" type="hidden" value="" /><input id="valueS_nav" name="valueS_nav" type="hidden" value="" /><input id="selectedLang_nav" name="selectedLang_nav" type="hidden" value="" /><input id="IsChangeLang_nav" name="IsChangeLang_nav" type="hidden" value="" />                                                    <fieldset>
+                                                        <legend>Login</legend>
+                                                        <div>
+                                                            <label class="sr-only" for="userid">Account No</label>
+                                                            <input type="text" class="form-control mb-2" name="userid" id="userid_nav" maxlength="50" autocomplete="off" placeholder="Enter Login ID" value="" />
+
+                                                            <label class="sr-only" for="password">Password</label>
+                                                            <input type="password" class="form-control" name="password" id="password_nav"  maxlength="50" autocomplete="off" placeholder="Enter Password" />
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" id="btn-login-submit_nav" class="btn btn-primary btn-md btn-block g-recaptcha" data-callback="submitForm">Login</button>
+                                                            <!--<button type="submit" id ="btn-login-submit_nav" class="btn btn-primary btn-md btn-block g-recaptcha" data-sitekey="6LdGoEIUAAAAAGAnrOq_SgGe57NQ2-Qly_vN22vd" data-callback="submitForm">Login</button>-->
+                                                        </div>
+                                                    </div>
+</form>                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <h4 id='G_UserID' style="display:none">-1</h4>
+    <div class="nopadding main-container" style="backface-visibility: hidden;">
+<form action="/Home/Fund" autocomplete="off" class="form-horizontal" id="fundForm" method="post" role="form">            <div class="container">
+                <div class="row" id="searchBarPad">
+                    <div class="col-md-12">
+                        <div class="ut-header__search">
+                            <div id="searchDropDown" class="dropdown-content">
+                                <input type="text" class="form-control" style="border:none" placeholder="Search Fund Here" id="searchInput" onkeyup="filterFunction()" />
+                                <span class="dropdown-arrow">
+                                    <i class="icon-Drop-down">&nbsp;&#9660;</i>
+                                </span>
+                                <div class="funds_list" id="fundList" style="overflow-y:auto;overflow-x:hidden;max-height:300px;background:#fff;position:absolute; width:100%; z-index:1; outline-color:#808080;border: 1px solid #ced4da;box-shadow: 0 0 0px #808080; border-radius:.25rem;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>        <div class="input-group container" style="padding-top:7px; padding-bottom:7px;">
+        </div>
+        <div class="container p-0 mb-3" style="background-color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .pre_table {
+            border-collapse: collapse;
+            width: 100%;
+            font: 12px Arial;
+        }
+
+            .pre_table td {
+                vertical-align: top;
+                border-bottom: 1px solid #ffecd1;
+            }
+
+        .pre_mod_sub_title {
+            font: bold 15px Arial;
+            margin: 8px 0px 8px 0px;
+        }
+
+        #chart-selector {
+            font-size: 14px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .highcharts-range-selector-buttons text.active {
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="col-md-12 extra-padding center wow fadeInDown" style="padding-Top:50px;">
+        <h1>Fund Details</h1>
+    </div>
+
+    <div id="content" class="container">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="logo"></div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="align-bottom">
+                        <span id="fname" class="pre_mod_sub_title pb-3"></span>
+                        <!--			     <a href="/Home/OpenAcc"><img src="/Scripts/js/images/btn-invest.png" /></a>-->
+
+                        <table class="border-0" style="font:20px;">
+                            <tr>
+                                <th>Latest NAV (Day) </th>
+                                <td>&nbsp;:&nbsp;</td>
+                                <td>
+                                    
+                                    <span id="todayNAV" style="display:inline-block;"></span>
+                                    <button type="button" class="btn btn-link btn-sm p-0" data-bs-toggle="modal" data-bs-target="#myModal">Click here For Price History</button>
+                                    <div class="container">
+
+                                        <!-- Trigger the modal with a button -->
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title pre_mod_sub_title" id="fname2"></h4>
+                                                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div id="#site-container">
+                                                            <div class="text-center">
+                                                                <div id="logo2"></div>
+
+                                                                <span id="fname2" class="pre_mod_sub_title"></span>
+
+                                                                <p>(Fund price for the last 5 months)</p>
+                                                                <div id="display-resources">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Highest NAV (Month)</th>
+                                <td>&nbsp;:&nbsp;</td>
+                                <td><span id="txthighestnav"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Lowest NAV (Month)</th>
+                                <td>&nbsp;:&nbsp;</td>
+                                <td><span id="lowestnav"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="#" id="FundInvest"><img src="/Scripts/js/images/btn-invest.png" class="align-top" /></a>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="NormalText">
+                        <b>Investment Objective:</b>
+                        <div id="txtinvestmentobject"></div>
+                        <b>Investment Policy:</b>
+                        <div id="txtinvestmentpolicy"></div>
+                        <br /><b>Benchmark :</b>
+                        <div id="txtbenchmark" style="word-wrap: break-word;"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <table class="table pre_table">
+                        <tr>
+                            <th>Asset Class</th>
+                            <td><span id="txtassetclass"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Fund Type</th>
+                            <td><span id="txtfundtype"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Geography</th>
+                            <td><span id="txtgeography"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Sector</th>
+                            <td><span id="txtfundsector"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Inception Date</th>
+                            <td><span id="txtinceptiondate"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Inception Price</th>
+                            <td><span id="txtinceptionprice"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Fund Currency</th>
+                            <td><span id="txtfundcurrency"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Latest Fund Size (Mil)</th>
+                            <td><span id="txtfundsize"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Online Tradeable</th>
+                            <td><span id="txtfundonline"></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2 style="text-align: center; font-size: 25px;">Historical NAV Price</h2>
+
+            <select id="chart-selector">
+                <option value="chart1">Net Asset Value Chart</option>
+                <option value="chart2">Index Performance Chart</option>
+            </select>
+
+            <div id="charts1">
+            </div>
+            <p id="remarks" style='font-size:11px; text-align:Justify; line-height:1.2em'><b>Remark: *NAV (Net Asset Value) prices presented in chart above are based on NAV-to-NAV basis, excluding any income distribution reinvested or unit split of the fund.</b></p>
+
+            <div id="charts2" style="display: none;">
+            </div>
+
+            <div id="downloadOverlay" style="
+                display: none;               /* hidden by default */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 9999;
+
+                justify-content: center;     /* horizontal center */
+                align-items: center;         /* vertical center */
+                font-size: 30px;              /* responsive font size */
+                font-weight: bold;
+                color: white;
+                text-align: center;
+            ">
+                Downloading chart, please wait...
+            </div>
+
+            <div class="col-md-12 table-responsive" style="padding:0px;">
+                <table class="table pre_table">
+                    <thead>
+                        <tr>
+                            <th>Prospectus</th>
+                            <th>Annual Report</th>
+                            <th>Market Outlook</th>
+                            <th>Product Highlight Sheet</th>
+                            <th>Fact Sheet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div id="tblprosfile"></div></td>
+                            <td><div id="tblreport"></div></td>
+                            <td><div id="tblmktoutlook"></div></td>
+                            <td><div id="tblmgrComm"></div></td>
+                            <td><div id="tblfactsheet"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" style="padding:0px;">
+                <div class="col-md-6">
+                    <div id="tblAnnualizedPerformance">
+                    </div>
+                </div>
+                <div class="col-md-6 table-responsive">
+                    <table class="table pre_table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Dealing Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Fund Source Investment Type</th>
+                                <td><span id="txtFundSourceInvestmentType"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Fund Type</th>
+                                <td><span id="txtPriceType"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Fund Dealing Cut Off Time</th>
+                                <td><span id="txtFundDealingCutOffTime"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Price Made known on</th>
+                                <td><span id="txtPriceMadeknownon"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Fund Currency</th>
+                                <td><span id="txtFundCurrency"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Pricing Basis</th>
+                                <td>Forward Pricing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        <div class="row" style="padding:0px; padding-bottom:45px;">
+            <div class="col-md-6 table-responsive">
+                <table class="table pre_table">
+                    <thead>
+                        <tr>
+                            <th style="">Relevant Charges</th>
+                            <th style="">Cash</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Maximum Sales Charge</th>
+                            <td><span id="txtMaximumSalesCharge_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Online Sales Charge</th>
+                            <td><span id="txtOnlineSalesCharge_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Switching Charge/Min. Switching Charge</th>
+                            <td><span id="txtSwitchingCharge_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Redemption Charge</th>
+                            <td><span id="txtRedemptionCharges_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Annual Management Fee</th>
+                            <td><span id="txtAnnualManagementFee_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Annual Trustee Fee</th>
+                            <td><span id="txtAnnualTrusteeFee_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Expense Ratio</th>
+                            <td><span id="txtExpenseRatio_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Special Remarks</th>
+                            <td><span id=""></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 table-responsive">
+                <table class="table pre_table">
+                    <thead>
+                        <tr>
+                            <th style="">Investment Amount</th>
+                            <th style="">Cash</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Minimum Investment Amount</th>
+                            <td><span id="txtMinimumInvestmentAmount_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Minimum Subsequent Investment</th>
+                            <td><span id="txtMinimumSubsequentInvestment_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Minimum Redemption Amount (RM) / Units</th>
+                            <td><span id="txtMinimumRedemptionAmount_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Minimum Required Holdings (RM) / Units</th>
+                            <td><span id="txtMinimumRequiredHolding_Cash"></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Minimum Initial Investment RSP Amount</th>
+                            <td><span id="txtMinimumInitialInvestmentRSP_Cash"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Minimum Subsequent Investment RSP Amount</th>
+                            <td><span id="txtMinimumSubsequentInvestmentRSP_Cash"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const selector = document.getElementById("chart-selector");
+        const chart1 = document.getElementById("charts1");
+        const chart2 = document.getElementById("charts2");
+        const remarks = document.getElementById("remarks");
+
+        selector.addEventListener("change", function () {
+            if (selector.value === "chart1") {
+                chart1.style.display = "block";
+                remarks.style.display = "block";
+                chart2.style.display = "none";
+            } else {
+                chart1.style.display = "none";
+                remarks.style.display = "none";
+                chart2.style.display = "block";
+            }
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            const fundCode = localStorage.getItem('investFundCode');
+
+            function setActiveButton(button) {
+                $('.highcharts-range-selector-buttons text').removeClass('active');
+                $(button.element).find('text').addClass('active');
+            }
+
+            function fetchAndRender(period) {
+                $('#charts2').html('<p>Loading chart...</p>'); // show loading
+
+                $.post(
+                    webapi.buildURL(webapi.urls.eUTMgmt.USP_GetIncomeDistributionInfo),
+                    { fundcode: fundCode, period: period },
+                    function (data) {
+                        if (data.b && data.rows && data.rows.length) {
+                            //var priceList2 = data.rows.map(e => {
+                            //    var d = new Date(Date.parse(e.Date));
+                            //    return [d.getTime(), parseFloat(e.Index)];
+                            //});
+
+
+                            var priceList2 = [];
+
+                            // assign values
+                            $.each(data.rows, function (i, e) {
+                                var d = new Date(e.Date);
+                                priceList2.push([d.getTime(), parseFloat(e.Index)]);
+
+                            });
+
+
+                            Highcharts.stockChart('charts2', {
+                                chart: {
+                                    zooming: { mouseWheel: false },
+                                    boost: { useGPUTranslations: true },
+                                    events: {
+                                        load: function () {
+                                            // highlight the correct button when chart loads
+                                            $('.highcharts-range-selector-buttons text')
+                                                .filter(function () {
+                                                    return $(this).text().toLowerCase() === period.toLowerCase();
+                                                })
+                                                .addClass('active');
+                                        }
+                                    }
+                                },
+                                navigator: { enabled: false }, // remove navigator
+                                scrollbar: { enabled: false }, // remove scrollbar
+                                exporting: {
+                                    enabled: true,
+                                    buttons: {
+                                        contextButton: {
+                                            menuItems: [
+                                                'viewFullscreen',
+                                                'printChart',
+                                                {
+                                                    text: 'Download PNG',
+                                                    onclick: function () {
+                                                        document.getElementById('downloadOverlay').style.display = 'flex';
+                                                        this.exportChart({ type: 'image/png' });
+                                                        setTimeout(function () {
+                                                            document.getElementById('downloadOverlay').style.display = 'none';
+                                                        }, 5000);
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                rangeSelector: {
+                                    selected: 1,
+                                    inputEnabled: false,
+                                    allButtonsEnabled: true,
+                                    buttons: [
+                                        { text: "1m", events: { click: function () { setActiveButton(this); fetchAndRender('1M'); return false; } } },
+                                        { text: "3m", events: { click: function () { setActiveButton(this); fetchAndRender('3M'); return false; } } },
+                                        { text: "6m", events: { click: function () { setActiveButton(this); fetchAndRender('6M'); return false; } } },
+                                        { text: "Ytd", events: { click: function () { setActiveButton(this); fetchAndRender('YTD'); return false; } } },
+                                        { text: "1y", events: { click: function () { setActiveButton(this); fetchAndRender('1Y'); return false; } } },
+                                        { text: "3y", events: { click: function () { setActiveButton(this); fetchAndRender('3Y'); return false; } } },
+                                        { text: "5y", events: { click: function () { setActiveButton(this); fetchAndRender('5Y'); return false; } } }
+                                    ]
+                                },
+                                series: [{
+                                    name: 'Index',
+                                    data: priceList2,
+                                    tooltip: { valueDecimals: 2 },
+                                    dataGrouping: { enabled: false }
+                                }],
+                                credits: { text: 'eUnittrust.com.my', href: 'https://www.eunittrust.com.my' }
+                            });
+                        } else {
+                            // show empty chart with "No data" message instead of removing it
+                            Highcharts.stockChart('charts2', {
+                                chart: {
+                                    zooming: { mouseWheel: false },
+                                    boost: { useGPUTranslations: true },
+                                    events: {
+                                        load: function () {
+                                            this.renderer.text('No data available for this period.', this.chartWidth / 2, this.chartHeight / 2)
+                                                .attr({ align: 'center' })
+                                                .css({ color: '#666', fontSize: '14px' })
+                                                .add();
+
+                                            $('.highcharts-range-selector-buttons text')
+                                                .filter(function () {
+                                                    return $(this).text().toLowerCase() === period.toLowerCase();
+                                                })
+                                                .addClass('active');
+                                        }
+                                    }
+                                },
+                                exporting: {
+                                    enabled: true,
+                                    buttons: {
+                                        contextButton: {
+                                            menuItems: [
+                                                'viewFullscreen',
+                                                'printChart',
+                                                {
+                                                    text: 'Download PNG',
+                                                    onclick: function () {
+                                                        document.getElementById('downloadOverlay').style.display = 'flex';
+                                                        this.exportChart({ type: 'image/png' });
+                                                        setTimeout(function () {
+                                                            document.getElementById('downloadOverlay').style.display = 'none';
+                                                        }, 5000);
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                navigator: { enabled: false },
+                                scrollbar: { enabled: false },
+                                rangeSelector: {
+                                    selected: 1,
+                                    inputEnabled: false,
+                                    allButtonsEnabled: true,
+                                    buttons: [
+                                        { text: "1m", events: { click: function () { setActiveButton(this); fetchAndRender('1M'); return false; } } },
+                                        { text: "3m", events: { click: function () { setActiveButton(this); fetchAndRender('3M'); return false; } } },
+                                        { text: "6m", events: { click: function () { setActiveButton(this); fetchAndRender('6M'); return false; } } },
+                                        { text: "Ytd", events: { click: function () { setActiveButton(this); fetchAndRender('YTD'); return false; } } },
+                                        { text: "1y", events: { click: function () { setActiveButton(this); fetchAndRender('1Y'); return false; } } },
+                                        { text: "3y", events: { click: function () { setActiveButton(this); fetchAndRender('3Y'); return false; } } },
+                                        { text: "5y", events: { click: function () { setActiveButton(this); fetchAndRender('5Y'); return false; } } }
+                                    ]
+                                },
+                                series: [{
+                                    name: 'Index',
+                                    data: [] // no data
+                                }],
+                                credits: { text: 'eUnittrust.com.my', href: 'https://www.eunittrust.com.my' }
+                            });
+                        }
+                    }
+                );
+            }
+
+            // Load default period
+            fetchAndRender('3M');
+        });
+    </script>
+</body>
+</html>
+
+
+            <script type="text/javascript">
+                window.addEventListener("storage", function (e) {
+                    if (e.key === "app-logged-out") {
+                        window.location = "/Account/ForceLogout?logoutType=1";
+                    }
+                });
+            </script>
+        </div>
+    </div>
+
+    <footer id="myFooter" style="background: #002e6e;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <ul class="text-left">
+                        <li>
+                            <a href="/Home/AboutUs" style="color: #ffffff;">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/Home/ContactUs" style="color: #ffffff;">Contact us</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Career" style="color: #ffffff;">Career</a>
+                        </li>
+                        <li>
+                            <a href="/Home/SecurityLegal" style="color: #ffffff;">Security and Legal</a>
+                        </li>
+                        <li>
+                            <a href="/Home/FAQ" style="color: #ffffff;">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 info" style="color: #ffffff; font-size: 10px; align-content:stretch;">
+                    <h5>Disclaimer</h5>
+                    <p style="font-size:10px; line-height: 15px">
+                        This compilation is prepared by Phillip Mutual Berhad in its capacity as an institutional unit trust adviser for specific Funds. You are advised to read and understand the relevant prospectus for the Funds. Such prospectus has been registered with the Securities Commission which takes no responsibility for its contents and is obtainable at any of our offices, website and authorised advisers. You should consider the fees and charges involved and consult your financial adviser if you are in doubt about any feature or nature of the funds. The prices of units and distribution payable if any may go down as well as up and past performance of the fund is no guarantee for its future performance. Any issue of units to which the prospectus relates will only be made on receipt of the application form referred to in and accompanying the prospectus.
+                        This site is best viewed using Google Chrome and Mozilla Firefox in 1024x768 screen resolution.
+                    </p>
+
+                    <a href="https://www.facebook.com/eUnitTrust.com.my"><img src="/Venkat/icon/facebook.png" width="30px" /></a> &nbsp;
+                    <a href="https://twitter.com/eUnittrustMy"><img src="/Venkat/icon/twitter.png" width="30px" /></a>
+                    <!--<a href="https://www.facebook.com/eUnitTrust.com.my" class="social-icons"><i class="fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/eUnittrustMy" class="social-icons"><i class="fa fa-twitter"></i></a>-->
+                    <a style="margin-left:20px;">
+                        <span id="ss_img_wrapper_gmogs_image_110-45_en_black"><a href="https://www.globalsign.com/" target=_blank title="GlobalSign Site Seal" rel="nofollow"><img alt="SSL" border=0 id="ss_img" src="//seal.globalsign.com/SiteSeal/images/gs_noscript_110-45_en.gif"></a></span>
+                        <script type="text/javascript" src="//seal.globalsign.com/SiteSeal/gmogs_image_110-45_en_black.js"></script>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p class="footer-copyright" style="font-size:10px;color: #ffffff;">&copy; 2026 PhillipCapital. All rights reserved. Brought to you by Phillip Mutual Berhad (A member of PhillipCapital Group of companies). Co. Reg. No. 200201002746 (570409-K).</p>
+        </div>
+        <!-- <div class="footer-social" style="background: #002e6e;">
+            <div>
+                <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fms-my.facebook.com%2FeUnitTrust.com.my&width=122&layout=button&action=like&size=large&show_faces=true&share=true&height=65&appId" width="122" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+            </div>
+
+             
+             
+
+             
+
+             <span id="ss_img_wrapper_gmogs_image_110-45_en_black"><a href="https://www.globalsign.com/" target=_blank title="GlobalSign Site Seal" rel="nofollow"><img alt="SSL" border=0 id="ss_img" src="//seal.globalsign.com/SiteSeal/images/gs_noscript_110-45_en.gif"></a></span>
+             <script type="text/javascript" src="//seal.globalsign.com/SiteSeal/gmogs_image_110-45_en_black.js"></script>
+
+         </div> -->
+    </footer>
+
+    <!-- region Open An Account Modal-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnIndividualAccount").click(function () {
+                $('#myModal_OpenAcc').modal('hide');
+
+                $("#PROCEEDSignUp").attr("href", "/Home/Register?AC=Individual");
+            });
+
+            $("#JointAccount").click(function () {
+                $('#myModal_OpenAcc').modal('hide');
+                $("#PROCEEDSignUp").attr("href", "/Home/RegisterJoint?AC=Joint");
+            });
+
+            $("#PREVIOUSModal").click(function () {
+                $('#myModal_OpenAcc_gen_req').modal('hide');
+            });
+
+        });
+    </script>
+    <!-- endRegion Open An Account Modal-->
+    <!-- region SignUp-->
+    <div class="container">
+        <div class="modal fade" id="myModal_OpenAcc" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Welcome to eUnittrust!</br>How do you wish to proceed?</h5>
+
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <button id="btnIndividualAccount" buttontype="button" class="btn btn-primary btn-md btn-block" data-bs-toggle="modal" data-bs-target="#myModal_OpenAcc_gen_req">Individual Account</button>
+                        <button id="JointAccount" buttontype="button" class="btn btn-primary btn-md btn-block" data-bs-toggle="modal" data-bs-target="#myModal_OpenAcc_gen_req">Joint Account</button>
+
+                        <br />
+                        <p>Incomplete account opening registration?</br><a href="/home/openacc#resumeReg" id="Clickhereresume">Click here to resume</a></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- endRegion-->
+    <!-- region SignUp gen req-->
+    <div class="container">
+        <div class="modal fade" id="myModal_OpenAcc_gen_req" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"> <b>General Requirement to Open an Account </b></h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="height:300px; overflow-y: scroll;">
+                        <div>
+
+
+                            <img src="/Scripts/js/index/Popupgeneralmessage.PNG" class="responsive" alt="eunittrust">
+
+                            <br>
+
+
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <button id="PREVIOUSModal" style="width:120px;" buttontype="button" class="btn btn-secondary btn-md btn-block" data-bs-toggle="modal" data-bs-target="#myModal_OpenAcc">PREVIOUS</button>
+                        <a id="PROCEEDSignUp" href="/Home/Register?AC=Individual"><button buttontype="button" class="btn btn-primary">PROCEED</button></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- endRegion gen req-->
+    <!--<script src="/Venkat/jquery.js"></script>-->
+    <script src="/Venkat/popper.min.js"></script>
+    <script src="/Venkat/bootstrap.min.js"></script>
+    <script src="/Venkat/wow.min.js"></script>
+    <!--<script src="/Venkat/jquery.prettyPhoto.js"></script>-->
+    <script src="/Venkat/jquery.isotope.min.js"></script>
+
+    <script src="/Scripts/GWM/jquery.extend.js"></script>
+
+    
+
+    <!-- <script type="text/javascript" src="https://www.eunittrust.com.my/webapi/Home/WebAPIAdapter?v=1.0&amp;m=demo"></script> -->
+
+    
+    <!--
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('.jobitem.displayed').removeClass('displayed');
+
+                $("a").click(function () {
+                    // alert($(this).attr('value') );
+
+                    localStorage['nav_bar'] = $(this).attr('value');
+                    //  alert(localStorage['nav_bar']);
+                });
+
+                if (localStorage.getItem("nav_bar") === null || localStorage.getItem("nav_bar") == "undefined") {
+                    //...
+                    localStorage['nav_bar'] = 'job1';
+                }
+                var nav_bar = localStorage['nav_bar'];
+                // alert( nav_bar);
+
+                var newcontent = $(this).attr('href');
+                $('.' + nav_bar).addClass('active');
+                $('#' + nav_bar).addClass('displayed');
+                //alert(a.attr('href', 'job4').val());
+                //alert(('.'+nav_bar).attr('href'));
+            });
+        </script>
+    -->
+    
+    <script>
+
+        function submitForm() {
+            var form = document.getElementById("loginForm");
+            if (validate()) {
+
+                console.log("Submit Form");
+                form.submit();
+            } else {
+                console.log("Reset Captcha");
+                grecaptcha.reset();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function navresizeFunction() {
+            if (navbar.offsetHeight == 104) {
+                const searchInput = document.getElementById('searchInput');
+                searchInput.style.marginTop = '60px';
+            }
+            else {
+                const searchInput = document.getElementById('searchInput');
+                searchInput.style.marginTop = '0px';
+            }
+        }
+        const navbar = document.querySelector('.navbar');
+        const resizeObserver = new ResizeObserver(() => {
+            navresizeFunction();
+        });
+        resizeObserver.observe(navbar);
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#LogOut").click(function () {
+                if (window.confirm("Are you sure you wish to sign out?")) {
+                    $('#G_UserID').text("");
+                    localStorage.clear();
+                    window.localStorage.clear();
+                    window.location = "/Home/Logout";
+                }
+                else {
+
+                }
+            });
+
+
+            $.ajax({
+                type: "post",
+                url: webapi.buildURL(webapi.urls.eUTMgmt.Usp_fm_ViewInfo),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: {},
+                success: function (result) {
+                    if (result.b) {
+                        var pmb;
+                        $.each(result.v, function (i, e) {
+                            if (e.fmcode != "001" && e.fmcode != "032" && e.fmcode != "016") {
+                                $("#fcode").append($("<option></option>").val(e.fmcode).text(e.fmname));
+                            }
+                            else {
+                                pmb = e;
+                            }
+                        });
+
+                        if (pmb != undefined) {
+                            $("#fcode").prepend($("<option selected='selected'></option>").val(pmb.fmcode).text(pmb.fmname));
+                            $("#fcode").val(localStorage['fcode']);
+                        }
+                    }
+                },
+
+                failure: function () {
+                    alert("Error");
+                }
+            });
+
+
+            if ($("#G_UserID").text() == "-1") {
+                $("#FundInvest").attr("href", "#");
+                //$(".LoginAndTransaction").attr("href", "/Home/Login");
+                $("#BeginForm1").show();
+                $("#PreLogin").show();
+                $("#PostLoginMenu").hide();
+            }
+            else {
+                $("#FundInvest").attr("href", "#");
+                //$(".LoginAndTransaction").attr("href", "/Home/transaction");
+                //$(".LoginAndTransaction").text("TRANSACTION");
+                //$(".LoginAndTransaction").css("font-weight","bold");
+                //$("#loginForm").hide()
+                $("#BeginForm1").hide();
+                $("#PreLogin").hide();
+                $("#PostLoginMenu").show();
+                $("#PostLoginMenu").css("font-weight", "bold");
+            }
+
+
+            $('#FundInvest').click(function () {
+
+                if ($("#txtfundonline").text() == "No") // fund offiline
+                {
+                    alert('This Fund is offline-tradeble fund only.');
+                    // location.reload();
+                }
+                else if (FundType == "PRS") // PRS fund offiline
+                {
+                    alert('This PRS FUND is Only available for purchase via manual form submission .');
+                    // location.reload();
+                }
+                else {
+                    if ($("#G_UserID").text() != "-1") {
+                        window.location.href = "/Home/transaction";
+                    }
+                    else {
+                        window.location.href = "/Home/Login";
+                    }
+                }
+
+            });
+
+
+        });
+
+
+        $(function () {
+            if (location.protocol != 'https:') {
+                if (window.location.href.substring(window.location.protocol.length).substring(2, 6) != "www.") {
+                    location.href = "http://www." + window.location.href.substring(window.location.protocol.length).substring(2, window.location.href.length - window.location.protocol.length);
+                }
+                else {
+                    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+                }
+            }
+        });
+
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+
+            function isDesktop() {
+                return window.innerWidth >= 992;
+            }
+
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.nav-link.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+
+                // Desktop: Show on hover
+                dropdown.addEventListener('mouseenter', () => {
+                    if (isDesktop()) menu.classList.add('show');
+                });
+
+                dropdown.addEventListener('mouseleave', () => {
+                    if (isDesktop()) menu.classList.remove('show');
+                });
+
+                // Mobile: Toggle on click
+                toggle.addEventListener('click', function (e) {
+                    if (!isDesktop()) {
+                        e.preventDefault();
+                        menu.classList.toggle('show');
+                    }
+                });
+
+                // Close menu when clicking outside (mobile)
+                document.addEventListener('click', function (e) {
+                    if (!isDesktop() && !dropdown.contains(e.target)) {
+                        menu.classList.remove('show');
+                    }
+                });
+
+                // Remove menu if resizing
+                window.addEventListener('resize', () => {
+                    menu.classList.remove('show');
+                });
+            });
+        });
+    </script>
+
+</body>
+<script>
+$(document).ready(function(){
+
+if(!window.isIE)
+{
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.src = "https://chatbot.phillipcapital.com.my/eutWebChatService/scripts/plugin.mjs";
+		script.type = 'text/javascript';
+		script.defer = true;
+		head.appendChild(script)
+} 
+});
+</script>
+
+
+</html>
+<style>
+    #login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+</style>
+
+
+
+   <script type="text/javascript">
+
+   
+        $.post(webapi.buildURL(webapi.urls.UTOrderMgmt.PostFACreateTransBuyDetails),
+          {
+              AccountType: "UT"
+          },
+          function (data, status) {
+              bindSearchField(data)
+          });
+   
+     function bindSearchField(data) {
+            var searchData = data;
+            ddlFundList = searchData.v.ddlFund;
+            var html = ''
+            $.each(searchData.v.ddlFund, function (index, val) {
+			
+			 if (val.Value != "028042") {
+				  if (val.Value != "0") {
+                    html += '<a href=/Home/FundDetail?fcode=' + val.Value +'&fname=' + val.Text.replace(/ /g,'-') + ' value="' + val.Value + '">' + val.Text + '</a>';
+                }
+                //Bind quick buy fund DDL here
+                if (val.Text.includes("Please")) {
+                    $('#fund_name1').append('<option value="' + val.Value + '" selected="selected">' + val.Text + '</option>');
+                }
+                else {
+                    $('#fund_name1').append('<option value="' + val.Value + '">' + val.Text + '</option>');
+                }
+			}
+			
+              
+            });
+			//debugger;
+			// html += "<a target='_blank' href='/Home/FundDetail?fcode=018007&amp;fname=Precious-Metals-Securities' value='018007' style='display: none;'>Precious Metals Securities</a>";
+            $('#fundList').append(html);
+        }
+
+        var x = document.getElementById("fundList");
+        x.style.display = "none";
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("searchDropDown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+            if (a.length > 0) {
+                $('#fundList').show();
+            }
+        }
+        $(".ut-header__search .dropdown-arrow").click(function () {
+            $(".funds_list").slideToggle();
+            $("#searchDropDown").toggleClass("toggle");
+        });
+
+        $(".ut-header__search .funds_list a").wrapAll("<div class='wrap'></div>");
+
+        var $menu = $('.dropdown-content');
+
+        $(document).mouseup(function (e) {
+            if (!$menu.is(e.target) // if the target of the click isn't the container...
+                && $menu.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                $menu.find(".funds_list").slideUp();
+                $("#searchDropDown").removeClass("toggle");
+            }
+        });
+		
+		localStorage.setItem("MAMInvestNow", '');
+		
+		const vali = document.getElementById('searchInput');
+		  vali.addEventListener('keypress', function(e) {
+			if (e.keyCode === 13) {
+			  e.preventDefault();
+			}
+		  });
+
+    </script>
+
